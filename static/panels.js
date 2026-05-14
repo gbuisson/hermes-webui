@@ -435,12 +435,23 @@ async function loadCrons(animate) {
       const isNewRun = _cronNewJobIds.has(String(job.id));
       const profileLabel = _cronProfileLabel(job.profile);
       const profileTitle = _cronProfileTitle(job.profile);
+      const scheduleLabel = job.schedule_display || (job.schedule && job.schedule.expression) || '';
+      const nextLabel = job.next_run_at ? new Date(job.next_run_at).toLocaleString([], {weekday:'short', hour:'2-digit', minute:'2-digit'}) : '';
+      const lastLabel = job.last_run_at ? new Date(job.last_run_at).toLocaleString([], {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'}) : '';
       item.innerHTML = `
         <div class="cron-header">
           ${isNewRun ? '<span class="cron-new-dot" title="New run"></span>' : ''}
-          <span class="cron-name" title="${esc(job.name)}">${esc(job.name)}</span>
+          <span class="cron-title-stack">
+            <span class="cron-name" title="${esc(job.name)}">${esc(job.name)}</span>
+            <span class="cron-meta-line">
+              ${nextLabel ? `<span class="cron-meta-chip cron-next-chip">Next ${esc(nextLabel)}</span>` : ''}
+              ${scheduleLabel ? `<span class="cron-meta-chip">${esc(scheduleLabel)}</span>` : ''}
+              ${lastLabel ? `<span class="cron-meta-chip">Last ${esc(lastLabel)}</span>` : ''}
+            </span>
+          </span>
           <span class="cron-profile-badge" title="${esc(profileTitle)}">${esc(profileLabel)}</span>
           <span class="cron-status ${status.listClass}">${esc(status.label)}</span>
+          <span class="cron-chevron" aria-hidden="true">›</span>
         </div>`;
       item.onclick = () => openCronDetail(job.id, item);
       if (_currentCronDetail && _currentCronDetail.id === job.id) item.classList.add('active');

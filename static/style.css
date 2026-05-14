@@ -4477,6 +4477,209 @@ main.main.showing-logs > #mainLogs{display:flex;}
   :root[data-skin="cupertino"] .kanban-board-wrap{padding:8px 12px var(--mobile-app-rail-reserve);background:var(--ios-grouped-bg,var(--bg));}
   :root[data-skin="cupertino"] .kanban-board{padding-bottom:0;}
 
+  /* Jobs: iOS Settings-style scheduled job list + detail cards. */
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .sidebar.mobile-open{
+    background:var(--ios-grouped-bg,var(--bg));
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-list{
+    padding:0 16px var(--mobile-app-rail-reserve);
+    background:var(--ios-grouped-bg,var(--bg));
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-item{
+    margin:0;
+    border:0;
+    border-radius:0;
+    background:var(--ios-secondary-bg,var(--surface));
+    box-shadow:none;
+    overflow:visible;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-list .cron-item:first-child{border-top-left-radius:18px;border-top-right-radius:18px;overflow:hidden;}
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-list .cron-item:last-child{border-bottom-left-radius:18px;border-bottom-right-radius:18px;overflow:hidden;}
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-item + .cron-item .cron-header::before{
+    content:"";position:absolute;left:16px;right:0;top:0;height:.5px;background:var(--ios-separator);opacity:.72;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-header{
+    position:relative;
+    min-height:76px;
+    padding:12px 12px 12px 16px;
+    gap:8px;
+    align-items:center;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-title-stack{
+    flex:1 1 auto;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-name{
+    display:block;
+    font-size:17px;
+    line-height:1.2;
+    font-weight:650;
+    letter-spacing:-.022em;
+    color:var(--ios-label,var(--text));
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-meta-line{
+    display:flex;
+    gap:5px;
+    min-width:0;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-meta-chip{
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:11.5px;
+    line-height:1.25;
+    color:var(--ios-secondary-label,var(--muted));
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-next-chip{color:var(--accent);font-weight:650;}
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-profile-badge{
+    display:none;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-status{
+    border:0;
+    padding:4px 8px;
+    font-size:10px;
+    line-height:1;
+    text-transform:uppercase;
+    letter-spacing:.045em;
+    background:var(--ios-fill);
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-status.active{background:rgba(52,199,89,.16);color:rgb(48,209,88);}
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-chevron{
+    color:var(--ios-tertiary-label);
+    font-size:24px;
+    line-height:1;
+    margin-left:-2px;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] .cron-item.active .cron-header{
+    background:color-mix(in srgb,var(--accent) 10%,transparent);
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .main-view-empty{
+    padding:28px 26px var(--mobile-app-rail-reserve);
+    color:var(--ios-secondary-label);
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .main-view-header{
+    min-height:calc(104px + var(--app-titlebar-safe-top));
+    align-items:stretch;
+    justify-content:flex-end;
+    flex-direction:column;
+    gap:8px;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .main-view-title{
+    flex:0 1 auto;
+    width:100%;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .main-view-actions{
+    display:flex;
+    flex-wrap:nowrap;
+    gap:8px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:1px;
+    scrollbar-width:none;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .main-view-actions::-webkit-scrollbar{display:none;}
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .main-view-actions .panel-head-btn{
+    width:32px;height:32px;min-width:32px;min-height:32px;border-radius:999px;background:var(--ios-fill);color:var(--accent);
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .main-view-empty-icon{
+    width:54px;height:54px;color:var(--ios-tertiary-label);opacity:.8;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .main-view-empty-title{
+    font-size:22px;font-weight:750;letter-spacing:-.03em;color:var(--ios-label);
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .main-view-empty-sub{
+    max-width:290px;font-size:15px;line-height:1.35;color:var(--ios-secondary-label);
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .main-view-content{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .detail-card{
+    margin:0;
+    border:0;
+    border-radius:18px;
+    background:var(--ios-secondary-bg,var(--surface));
+    padding:0;
+    overflow:hidden;
+    box-shadow:0 1px 0 rgba(255,255,255,.10) inset,0 10px 30px rgba(0,0,0,.04);
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .detail-card-title{
+    margin:0;
+    padding:12px 16px 7px;
+    background:var(--ios-grouped-bg,var(--bg));
+    color:var(--ios-secondary-label);
+    font-size:12px;
+    font-weight:760;
+    letter-spacing:.045em;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .detail-row{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-height:46px;
+    padding:9px 16px;
+    border:0;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .detail-row + .detail-row::before{
+    content:"";position:absolute;left:16px;right:0;top:0;height:.5px;background:var(--ios-separator);opacity:.72;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .detail-row-label{
+    flex:0 0 108px;
+    font-size:15px;
+    font-weight:500;
+    color:var(--ios-label);
+    text-transform:none;
+    letter-spacing:-.01em;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .detail-row-value{
+    flex:1 1 auto;
+    min-width:0;
+    text-align:right;
+    color:var(--ios-secondary-label);
+    font-size:14px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .detail-badge{
+    border:0;
+    border-radius:999px;
+    background:var(--ios-fill);
+    color:var(--ios-secondary-label);
+    padding:5px 9px;
+    font-weight:700;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .detail-prompt,
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .detail-run-body{
+    margin:0 16px 16px;
+    border:0;
+    border-radius:14px;
+    background:var(--ios-fill);
+    color:var(--ios-secondary-label);
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .detail-run-item{
+    padding:0 16px;
+    border:0;
+  }
+  :root[data-skin="cupertino"] body[data-panel="tasks"] #mainTasks .detail-run-head{
+    min-height:44px;
+    border-top:.5px solid var(--ios-separator);
+    color:var(--ios-label);
+  }
+
   /* Default titles for list/detail sections before an item is selected. */
   main.main.showing-skills > #mainSkills .main-view-header:has(.main-view-title:empty),
   main.main.showing-memory > #mainMemory .main-view-header:has(.main-view-title:empty),
