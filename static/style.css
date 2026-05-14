@@ -4313,19 +4313,10 @@ main.main.showing-logs > #mainLogs{display:flex;}
 :root.dark[data-skin="cupertino"] .app-titlebar-inner{background:rgba(28,28,30,.48);box-shadow:0 18px 44px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.08);}
 :root[data-skin="cupertino"] .app-titlebar-hamburger{pointer-events:auto;-webkit-app-region:no-drag;}
 :root[data-skin="cupertino"] .app-titlebar-spacer{pointer-events:none;}
-/* Guillaume correction: outside chat there is no title/menu top bar, but iOS still
-   needs a native status-area scrim so content never slides under the notch. */
+/* Outside chat, remove the floating chat chrome completely. Section screens own
+   their header/title; no status-area blur/scrim that creates a fake top gap. */
 :root[data-skin="cupertino"] body:not([data-panel="chat"]) .app-titlebar{
-  display:block;
-  height:0;
-  min-height:0;
-  padding:var(--app-titlebar-safe-top) 0 0;
-  border:0;
-  background:linear-gradient(to bottom,color-mix(in srgb,var(--ios-bg) 88%,transparent),color-mix(in srgb,var(--ios-bg) 45%,transparent) 72%,transparent);
-  box-shadow:none;
-  pointer-events:none;
-  -webkit-backdrop-filter:saturate(180%) blur(18px);
-  backdrop-filter:saturate(180%) blur(18px);
+  display:none!important;
 }
 :root[data-skin="cupertino"] body:not([data-panel="chat"]) .app-titlebar-inner,
 :root[data-skin="cupertino"] body:not([data-panel="chat"]) .app-titlebar-hamburger,
@@ -4343,8 +4334,8 @@ main.main.showing-logs > #mainLogs{display:flex;}
   :root[data-skin="cupertino"] .app-titlebar-title{max-width:38vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   :root[data-skin="cupertino"] .app-titlebar-sub{display:none;}
   :root[data-skin="cupertino"] .messages-inner{padding-top:74px;}
-  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .layout{padding-top:var(--app-titlebar-safe-top);}
-  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .sidebar{top:var(--app-titlebar-safe-top);}
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .layout{padding-top:0;}
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .sidebar{top:0;}
 }
 :root[data-skin="cupertino"] .skills-list{padding:10px 12px 18px;background:var(--ios-grouped-bg);}
 :root[data-skin="cupertino"] .skills-category{margin:0 0 18px;}
@@ -4391,14 +4382,14 @@ main.main.showing-logs > #mainLogs{display:flex;}
   .mobile-app-tabbar{
     display:grid;position:fixed;left:0;right:0;bottom:0;z-index:430;
     grid-template-columns:repeat(11,minmax(0,1fr));
-    height:calc(40px + var(--app-safe-bottom));
-    padding:2px max(4px,var(--app-safe-left)) max(2px,var(--app-safe-bottom)) max(4px,var(--app-safe-right));
-    box-sizing:border-box;align-items:center;gap:1px;
-    background:color-mix(in srgb,var(--ios-secondary-bg,var(--surface)) 72%,transparent);
+    height:calc(38px + var(--app-safe-bottom));
+    padding:1px max(3px,var(--app-safe-left)) max(0px,var(--app-safe-bottom)) max(3px,var(--app-safe-right));
+    box-sizing:border-box;align-items:start;gap:1px;
+    background:var(--ios-secondary-bg,var(--surface));
     border-top:.5px solid var(--ios-separator,var(--border));
-    -webkit-backdrop-filter:saturate(180%) blur(22px);backdrop-filter:saturate(180%) blur(22px);
+    -webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);
   }
-  .mobile-app-tab{min-width:0;height:34px;border:0;border-radius:11px;background:transparent;color:var(--ios-secondary-label,var(--muted));display:flex;align-items:center;justify-content:center;font:600 0/1 var(--font-ui,inherit);-webkit-tap-highlight-color:transparent;}
+  .mobile-app-tab{min-width:0;height:34px;border:0;border-radius:10px;background:transparent;color:var(--ios-secondary-label,var(--muted));display:flex;align-items:center;justify-content:center;font:600 0/1 var(--font-ui,inherit);-webkit-tap-highlight-color:transparent;}
   .mobile-app-tab span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
   .mobile-app-tab svg{width:18px;height:18px;display:block;}
   .mobile-app-tab.active{color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);}
@@ -4406,32 +4397,65 @@ main.main.showing-logs > #mainLogs{display:flex;}
 
   /* The old mobile sidebar is contextual now: Chat sessions, or the current section list.
      Keep it just above the compact bottom rail and avoid stealing extra vertical space. */
-  .sidebar{bottom:calc(40px + var(--app-safe-bottom))!important;}
+  .sidebar{bottom:calc(38px + var(--app-safe-bottom))!important;}
   .sidebar-nav{display:none!important;}
   .sidebar.mobile-open .session-list,
   .sidebar.mobile-open .cron-list,
   .sidebar.mobile-open .kanban-list,
   .sidebar.mobile-open .skills-list,
-  .sidebar.mobile-open .side-menu{padding-bottom:10px;}
+  .sidebar.mobile-open .side-menu{padding-bottom:8px;}
   :root[data-skin="cupertino"] body[data-panel="chat"] .composer-wrap,
-  body[data-panel="chat"] .composer-wrap{padding-bottom:calc(44px + var(--app-safe-bottom))!important;}
+  body[data-panel="chat"] .composer-wrap{padding-bottom:calc(42px + var(--app-safe-bottom))!important;}
   body:not([data-panel="chat"]) .main-view-body,
   body:not([data-panel="chat"]) .main-view-empty,
-  body:not([data-panel="chat"]) .settings-main{padding-bottom:calc(50px + var(--app-safe-bottom));}
+  body:not([data-panel="chat"]) .settings-main{padding-bottom:calc(42px + var(--app-safe-bottom));}
   :root[data-skin="cupertino"] body:not([data-panel="chat"]) .layout{padding-top:0!important;}
-  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .sidebar{top:var(--app-titlebar-safe-top);}
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .sidebar{top:0;}
 
-  /* Non-chat sections still have their own header (Board, Skills, Jobs, ...).
-     Keep that header below the iOS status/notch area while avoiding the old
-     extra layout spacer that made section content float too low. */
+  /* iOS-style section screens: visible large title, no fake blurred notch band,
+     compact vertical rhythm, content tucked directly under the title. */
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view{
+    background:var(--ios-grouped-bg,var(--bg));
+  }
   :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-header{
-    min-height:calc(51px + var(--app-titlebar-safe-top));
-    padding:calc(8px + var(--app-titlebar-safe-top)) 16px 8px;
+    min-height:auto;
+    padding:clamp(12px,calc(var(--app-titlebar-safe-top) - 12px),36px) 16px 8px;
     box-sizing:border-box;
     align-items:flex-end;
-    background:color-mix(in srgb,var(--ios-bg) 82%,transparent);
-    -webkit-backdrop-filter:saturate(180%) blur(18px);
-    backdrop-filter:saturate(180%) blur(18px);
+    border-bottom:0;
+    background:var(--ios-grouped-bg,var(--bg));
+    box-shadow:none;
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
   }
-  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-body{padding-top:14px;}
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-title,
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-title-row .main-view-title{
+    font-family:var(--font-display);
+    font-size:30px;
+    line-height:1.08;
+    font-weight:780;
+    letter-spacing:-.04em;
+    color:var(--ios-label,var(--text));
+  }
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-title-row{align-items:flex-end;gap:8px;flex-wrap:nowrap;min-width:0;}
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-title-row .main-view-title{flex:0 0 auto;}
+  :root[data-skin="cupertino"] .kanban-board-switcher{min-width:0;}
+  :root[data-skin="cupertino"] .kanban-board-switcher-toggle{max-width:220px;min-width:0;border-radius:999px;}
+  :root[data-skin="cupertino"] .kanban-board-switcher-name{max-width:132px;}
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-body{padding:8px 16px calc(42px + var(--app-safe-bottom));}
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-content{max-width:none;}
+  :root[data-skin="cupertino"] .kanban-board-wrap{padding:8px 12px calc(42px + var(--app-safe-bottom));background:var(--ios-grouped-bg,var(--bg));}
+  :root[data-skin="cupertino"] .kanban-board{padding-bottom:0;}
+
+  /* Default titles for list/detail sections before an item is selected. */
+  main.main.showing-skills > #mainSkills .main-view-header:has(.main-view-title:empty),
+  main.main.showing-memory > #mainMemory .main-view-header:has(.main-view-title:empty),
+  main.main.showing-tasks > #mainTasks .main-view-header:has(.main-view-title:empty),
+  main.main.showing-workspaces > #mainWorkspaces .main-view-header:has(.main-view-title:empty),
+  main.main.showing-profiles > #mainProfiles .main-view-header:has(.main-view-title:empty){display:flex;}
+  #skillDetailTitle:empty::before{content:"Skills";}
+  #memoryDetailTitle:empty::before{content:"Memory";}
+  #taskDetailTitle:empty::before{content:"Jobs";}
+  #workspaceDetailTitle:empty::before{content:"Spaces";}
+  #profileDetailTitle:empty::before{content:"Profiles";}
 }
