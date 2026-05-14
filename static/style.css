@@ -737,6 +737,7 @@
   :root{--app-titlebar-safe-top:0px;--app-titlebar-mobile-height:38px;--app-safe-bottom:0px;--app-safe-left:0px;--app-safe-right:0px;}
   @supports (padding-top: env(safe-area-inset-top)){
     :root{
+      --app-titlebar-safe-top:env(safe-area-inset-top,0px);
       --app-safe-bottom:env(safe-area-inset-bottom,0px);
       --app-safe-left:env(safe-area-inset-left,0px);
       --app-safe-right:env(safe-area-inset-right,0px);

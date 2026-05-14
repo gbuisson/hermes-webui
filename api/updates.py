@@ -92,6 +92,10 @@ def _detect_webui_version() -> str:
          ``__version__ = 'vX.Y.Z'``.
       3. ``'unknown'`` — last resort; displayed as-is in the settings badge.
     """
+    env_version = os.environ.get('HERMES_WEBUI_VERSION', '').strip()
+    if env_version:
+        return env_version
+
     # Timeout capped at 3s: git describe on a healthy local repo is <50ms;
     # a 10s stall on import (NFS-mounted .git, broken git binary) is unacceptable.
     out, ok = _run_git(['describe', '--tags', '--always', '--dirty'], REPO_ROOT, timeout=3)
