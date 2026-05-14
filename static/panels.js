@@ -1134,10 +1134,12 @@ function _kanbanRenderSidebar(columns){
   }
   list.innerHTML = tasks.map(task => {
     const meta = _kanbanTaskMeta(task);
-    return `<button class="kanban-list-item" onclick="loadKanbanTask('${esc(task.id)}')">
-      <span class="kanban-list-status">${esc(_kanbanColumnLabel(task.status))}</span>
+    const active = task.id && task.id === _kanbanCurrentTaskId;
+    return `<button class="kanban-list-item${active ? ' active' : ''}" data-kanban-sidebar-task-id="${esc(task.id || '')}" onclick="loadKanbanTask('${esc(task.id)}')">
+      <span class="kanban-list-status kanban-status-${esc(task.status || 'unknown')}">${esc(_kanbanColumnLabel(task.status))}</span>
       <span class="kanban-list-title">${esc(_kanbanTaskTitle(task))}</span>
       ${meta.length ? `<span class="kanban-meta">${esc(meta.join(' · '))}</span>` : ''}
+      <span class="kanban-list-chevron" aria-hidden="true">›</span>
     </button>`;
   }).join('');
 }
@@ -1285,7 +1287,7 @@ function _kanbanCard(task, status){
   const stale = _kanbanCardStalenessClass(task);
   const body = _kanbanTaskBody(task);
   const assignee = task.assignee ? `<span class="kanban-card-assignee">@${esc(task.assignee)}</span>` : `<span class="kanban-card-unassigned">${esc(t('kanban_unassigned'))}</span>`;
-  return `<article class="kanban-card ${esc(stale)}" data-kanban-task-id="${esc(task.id)}" draggable="true" ondragstart="dragKanbanTask(event, '${esc(task.id)}')" onclick="loadKanbanTask('${esc(task.id)}')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();loadKanbanTask('${esc(task.id)}')}">
+  return `<article class="kanban-card kanban-card-${esc(status || task.status || 'unknown')} ${esc(stale)}" data-kanban-task-id="${esc(task.id)}" draggable="true" ondragstart="dragKanbanTask(event, '${esc(task.id)}')" onclick="loadKanbanTask('${esc(task.id)}')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();loadKanbanTask('${esc(task.id)}')}">
     <div class="kanban-card-topline"><span class="kanban-card-id">${esc(task.id || '')}</span>${priority ? `<span class="kanban-badge priority">P${priority}</span>` : ''}${task.tenant ? `<span class="kanban-badge tenant">${esc(task.tenant)}</span>` : ''}</div>
     <div class="kanban-card-title">${esc(_kanbanTaskTitle(task))}</div>
     ${body ? `<div class="kanban-card-body">${_kanbanRenderMarkdown(body)}</div>` : ''}
@@ -2270,6 +2272,11 @@ async function loadKanbanTask(taskId){
     const logEndpoint = '/api/kanban/tasks/' + encodeURIComponent(taskId) + '/log' + _kanbanBoardQuery();
     try { data.log = await api(logEndpoint + '?tail=65536'); } catch(e) { data.log = {}; }
     _kanbanCurrentTaskId = taskId;
+    if (typeof closeMobileSidebar === 'function') closeMobileSidebar();
+    const sidebarList = $('kanbanList');
+    if (sidebarList) {
+      sidebarList.querySelectorAll('.kanban-list-item').forEach(item => item.classList.toggle('active', item.dataset.kanbanSidebarTaskId === taskId));
+    }
     const task = data.task || {};
     const title = _kanbanTaskTitle(task);
     const board = $('kanbanBoard');
