@@ -218,9 +218,33 @@
     -webkit-backdrop-filter:saturate(180%) blur(24px);
     backdrop-filter:saturate(180%) blur(24px);
   }
-  :root[data-skin="cupertino"] .app-titlebar{height:42px;border-bottom-color:var(--border-subtle);}
-  :root[data-skin="cupertino"]{--app-titlebar-mobile-height:42px;}
-  :root[data-skin="cupertino"] .app-titlebar-title{font-weight:650;letter-spacing:-.02em;}
+  :root[data-skin="cupertino"] .app-titlebar{
+    height:52px;
+    border-bottom:.5px solid var(--ios-separator);
+    background:color-mix(in srgb,var(--ios-secondary-bg) 70%,transparent);
+    -webkit-backdrop-filter:saturate(190%) blur(28px);
+    backdrop-filter:saturate(190%) blur(28px);
+    box-shadow:0 1px 0 rgba(255,255,255,.22) inset;
+  }
+  :root[data-skin="cupertino"]{--app-titlebar-mobile-height:54px;}
+  :root[data-skin="cupertino"] .app-titlebar-inner{
+    gap:9px;
+    min-height:36px;
+    padding:4px 12px 4px 7px;
+    border:1px solid var(--ios-separator);
+    border-radius:999px;
+    background:color-mix(in srgb,var(--ios-secondary-bg) 78%,transparent);
+    box-shadow:0 8px 24px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.20);
+    -webkit-backdrop-filter:saturate(180%) blur(18px);
+    backdrop-filter:saturate(180%) blur(18px);
+  }
+  :root[data-skin="cupertino"] .app-titlebar-icon{
+    width:28px;height:28px;border-radius:9px;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;
+    box-shadow:0 3px 10px rgba(10,132,255,.22),inset 0 1px 0 rgba(255,255,255,.24);
+  }
+  :root[data-skin="cupertino"] .app-titlebar-icon img{width:100%;height:100%;display:block;object-fit:cover;}
+  :root[data-skin="cupertino"] .app-titlebar-copy{display:flex;align-items:baseline;gap:7px;min-width:0;}
+  :root[data-skin="cupertino"] .app-titlebar-title{font-size:14px;font-weight:750;letter-spacing:-.028em;color:var(--ios-label);}
   :root[data-skin="cupertino"] .logo{border-radius:10px;background:linear-gradient(145deg,#64D2FF,#0A84FF 56%,#5E5CE6);box-shadow:0 8px 24px rgba(10,132,255,.24);}
   :root[data-skin="cupertino"]{
     --font-ui:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",system-ui,sans-serif;
@@ -360,15 +384,27 @@
       var(--ios-bg);
   }
   :root[data-skin="cupertino"] .topbar{
-    min-height:56px;
+    min-height:62px;
     padding:10px 18px;
     border-bottom:.5px solid var(--ios-separator);
-    background:color-mix(in srgb,var(--ios-secondary-bg) 76%,transparent);
-    -webkit-backdrop-filter:saturate(180%) blur(26px);
-    backdrop-filter:saturate(180%) blur(26px);
+    background:linear-gradient(180deg,color-mix(in srgb,var(--ios-secondary-bg) 82%,transparent),color-mix(in srgb,var(--ios-secondary-bg) 60%,transparent));
+    -webkit-backdrop-filter:saturate(190%) blur(30px);
+    backdrop-filter:saturate(190%) blur(30px);
+    box-shadow:0 1px 0 rgba(255,255,255,.16) inset,0 10px 30px rgba(0,0,0,.04);
   }
-  :root[data-skin="cupertino"] .topbar-title{font-size:17px;font-weight:700;letter-spacing:-.025em;color:var(--ios-label);}
-  :root[data-skin="cupertino"] .topbar-meta{font-size:12px;color:var(--ios-secondary-label);opacity:1;}
+  :root[data-skin="cupertino"] .topbar::before{
+    content:"";
+    position:absolute;
+    left:50%;top:50%;
+    width:72px;height:28px;
+    transform:translate(-50%,-50%);
+    border-radius:999px;
+    background:var(--ios-fill);
+    opacity:.62;
+    pointer-events:none;
+  }
+  :root[data-skin="cupertino"] .topbar-title{position:relative;font-size:18px;font-weight:750;letter-spacing:-.03em;color:var(--ios-label);}
+  :root[data-skin="cupertino"] .topbar-meta{position:relative;font-size:12px;color:var(--ios-secondary-label);opacity:1;}
   :root[data-skin="cupertino"] .rail{background:var(--ios-grouped-bg);border-right:.5px solid var(--ios-separator);padding-top:10px;gap:6px;}
   :root[data-skin="cupertino"] .rail .nav-tab{width:38px;height:38px;border-radius:13px;color:var(--ios-secondary-label);}
   :root[data-skin="cupertino"] .rail .nav-tab:hover{background:var(--ios-fill);color:var(--ios-label);transform:none;}
@@ -532,7 +568,21 @@
   :root[data-skin="cupertino"] .settings-section-meta{color:var(--ios-secondary-label);}
   :root[data-skin="cupertino"] .toast{border-radius:16px;background:color-mix(in srgb,var(--ios-secondary-bg) 86%,transparent);border-color:var(--ios-separator);box-shadow:0 16px 44px rgba(0,0,0,.20);-webkit-backdrop-filter:saturate(180%) blur(22px);backdrop-filter:saturate(180%) blur(22px);}
   @media(max-width:640px){
-    :root[data-skin="cupertino"] .topbar{min-height:50px;padding:8px 14px;background:color-mix(in srgb,var(--ios-bg) 70%,transparent);}
+    :root[data-skin="cupertino"] .app-titlebar{
+      height:52px;
+      background:color-mix(in srgb,var(--ios-bg) 72%,transparent);
+      border-bottom:.5px solid color-mix(in srgb,var(--ios-separator) 72%,transparent);
+      box-shadow:0 10px 30px rgba(0,0,0,.05);
+    }
+    :root[data-skin="cupertino"] .app-titlebar-hamburger,
+    :root[data-skin="cupertino"] .app-titlebar-spacer{width:38px;height:38px;}
+    :root[data-skin="cupertino"] .app-titlebar-hamburger{border-radius:999px;background:var(--ios-fill);border-color:transparent;color:var(--ios-label);}
+    :root[data-skin="cupertino"] .app-titlebar-inner{min-height:36px;padding:4px 13px 4px 7px;box-shadow:0 8px 22px rgba(0,0,0,.10),inset 0 1px 0 rgba(255,255,255,.18);}
+    :root[data-skin="cupertino"] .app-titlebar-icon{width:28px;height:28px;border-radius:9px;}
+    :root[data-skin="cupertino"] .app-titlebar-title{font-size:15px;}
+    :root[data-skin="cupertino"] .topbar{min-height:54px;padding:8px 14px;background:color-mix(in srgb,var(--ios-bg) 70%,transparent);}
+    :root[data-skin="cupertino"] .topbar::before{width:64px;height:26px;}
+    :root[data-skin="cupertino"] .topbar-title{font-size:17px;}
     :root[data-skin="cupertino"] .messages-inner{padding:16px 12px 24px;}
     :root[data-skin="cupertino"] .msg-row[data-role="assistant"] .msg-body{max-width:100%;border-radius:18px;padding:13px 14px;}
     :root[data-skin="cupertino"] .msg-row[data-role="user"] .msg-body{max-width:88%;border-radius:20px 20px 5px 20px;}

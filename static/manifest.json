@@ -4,8 +4,8 @@
   "description": "Hermes AI Agent Web UI",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#0D0D1A",
-  "theme_color": "#0D0D1A",
+  "background_color": "#F5F5F7",
+  "theme_color": "#F5F5F7",
   "orientation": "portrait-primary",
   "icons": [
     {

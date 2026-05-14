@@ -36,6 +36,9 @@ const SHELL_ASSETS = [
   './static/onboarding.js' + VQ,
   './static/favicon.svg',
   './static/favicon-32.png',
+  './static/favicon-192.png',
+  './static/favicon-512.png',
+  './static/apple-touch-icon.png',
   './manifest.json',
 ];
 
