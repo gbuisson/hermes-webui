@@ -4379,11 +4379,19 @@ main.main.showing-logs > #mainLogs{display:flex;}
 /* ── Mobile app navigation split: compact global icon rail + contextual lists ── */
 .mobile-app-tabbar{display:none;}
 @media(max-width:640px){
+  :root{
+    /* Do not reserve the full iOS home-indicator inset for the app rail. Safari/PWA
+       already gives that inset a lot of visual weight; using it 1:1 made the bottom
+       chrome feel roughly twice as tall on real iPhones. */
+    --mobile-app-rail-safe:clamp(0px,calc(var(--app-safe-bottom) * .24),8px);
+    --mobile-app-rail-height:calc(38px + var(--mobile-app-rail-safe));
+    --mobile-app-rail-reserve:calc(var(--mobile-app-rail-height) + 4px);
+  }
   .mobile-app-tabbar{
     display:grid;position:fixed;left:0;right:0;bottom:0;z-index:430;
     grid-template-columns:repeat(11,minmax(0,1fr));
-    height:calc(38px + var(--app-safe-bottom));
-    padding:1px max(3px,var(--app-safe-left)) max(0px,var(--app-safe-bottom)) max(3px,var(--app-safe-right));
+    height:var(--mobile-app-rail-height);
+    padding:1px max(3px,var(--app-safe-left)) var(--mobile-app-rail-safe) max(3px,var(--app-safe-right));
     box-sizing:border-box;align-items:start;gap:1px;
     background:var(--ios-secondary-bg,var(--surface));
     border-top:.5px solid var(--ios-separator,var(--border));
@@ -4397,7 +4405,7 @@ main.main.showing-logs > #mainLogs{display:flex;}
 
   /* The old mobile sidebar is contextual now: Chat sessions, or the current section list.
      Keep it just above the compact bottom rail and avoid stealing extra vertical space. */
-  .sidebar{bottom:calc(38px + var(--app-safe-bottom))!important;}
+  .sidebar{bottom:var(--mobile-app-rail-height)!important;}
   .sidebar-nav{display:none!important;}
   .sidebar.mobile-open .session-list,
   .sidebar.mobile-open .cron-list,
@@ -4405,10 +4413,10 @@ main.main.showing-logs > #mainLogs{display:flex;}
   .sidebar.mobile-open .skills-list,
   .sidebar.mobile-open .side-menu{padding-bottom:8px;}
   :root[data-skin="cupertino"] body[data-panel="chat"] .composer-wrap,
-  body[data-panel="chat"] .composer-wrap{padding-bottom:calc(42px + var(--app-safe-bottom))!important;}
+  body[data-panel="chat"] .composer-wrap{padding-bottom:var(--mobile-app-rail-reserve)!important;}
   body:not([data-panel="chat"]) .main-view-body,
   body:not([data-panel="chat"]) .main-view-empty,
-  body:not([data-panel="chat"]) .settings-main{padding-bottom:calc(42px + var(--app-safe-bottom));}
+  body:not([data-panel="chat"]) .settings-main{padding-bottom:var(--mobile-app-rail-reserve);}
   :root[data-skin="cupertino"] body:not([data-panel="chat"]) .layout{padding-top:0!important;}
   :root[data-skin="cupertino"] body:not([data-panel="chat"]) .sidebar{top:0;}
 
@@ -4442,9 +4450,9 @@ main.main.showing-logs > #mainLogs{display:flex;}
   :root[data-skin="cupertino"] .kanban-board-switcher{min-width:0;}
   :root[data-skin="cupertino"] .kanban-board-switcher-toggle{max-width:220px;min-width:0;border-radius:999px;}
   :root[data-skin="cupertino"] .kanban-board-switcher-name{max-width:132px;}
-  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-body{padding:8px 16px calc(42px + var(--app-safe-bottom));}
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-body{padding:8px 16px var(--mobile-app-rail-reserve);}
   :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-content{max-width:none;}
-  :root[data-skin="cupertino"] .kanban-board-wrap{padding:8px 12px calc(42px + var(--app-safe-bottom));background:var(--ios-grouped-bg,var(--bg));}
+  :root[data-skin="cupertino"] .kanban-board-wrap{padding:8px 12px var(--mobile-app-rail-reserve);background:var(--ios-grouped-bg,var(--bg));}
   :root[data-skin="cupertino"] .kanban-board{padding-bottom:0;}
 
   /* Default titles for list/detail sections before an item is selected. */
