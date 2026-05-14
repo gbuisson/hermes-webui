@@ -4420,4 +4420,18 @@ main.main.showing-logs > #mainLogs{display:flex;}
   body:not([data-panel="chat"]) .settings-main{padding-bottom:calc(50px + var(--app-safe-bottom));}
   :root[data-skin="cupertino"] body:not([data-panel="chat"]) .layout{padding-top:0!important;}
   :root[data-skin="cupertino"] body:not([data-panel="chat"]) .sidebar{top:var(--app-titlebar-safe-top);}
+
+  /* Non-chat sections still have their own header (Board, Skills, Jobs, ...).
+     Keep that header below the iOS status/notch area while avoiding the old
+     extra layout spacer that made section content float too low. */
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-header{
+    min-height:calc(51px + var(--app-titlebar-safe-top));
+    padding:calc(8px + var(--app-titlebar-safe-top)) 16px 8px;
+    box-sizing:border-box;
+    align-items:flex-end;
+    background:color-mix(in srgb,var(--ios-bg) 82%,transparent);
+    -webkit-backdrop-filter:saturate(180%) blur(18px);
+    backdrop-filter:saturate(180%) blur(18px);
+  }
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-body{padding-top:14px;}
 }
