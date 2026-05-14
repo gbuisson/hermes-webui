@@ -1204,6 +1204,41 @@
   </div>
 </div>
 <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileSidebar()"></div>
+<nav class="mobile-app-tabbar" aria-label="App navigation">
+  <button class="mobile-app-tab active" data-mobile-panel="chat" onclick="mobileAppSwitchPanel('chat')" type="button" aria-label="Chat">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span>Chat</span>
+  </button>
+  <button class="mobile-app-tab" data-mobile-panel="skills" onclick="mobileAppSwitchPanel('skills')" type="button" aria-label="Skills">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+    <span>Skills</span>
+  </button>
+  <button class="mobile-app-tab" data-mobile-panel="tasks" onclick="mobileAppSwitchPanel('tasks')" type="button" aria-label="Jobs">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    <span>Jobs</span>
+  </button>
+  <button class="mobile-app-tab" data-mobile-panel="more" onclick="toggleMobileAppMenu()" type="button" aria-label="More">
+    <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+    <span>More</span>
+  </button>
+</nav>
+<div class="mobile-app-menu" id="mobileAppMenu" aria-hidden="true">
+  <button class="mobile-app-menu-backdrop" type="button" onclick="closeMobileAppMenu()" aria-label="Close app menu"></button>
+  <div class="mobile-app-menu-sheet" role="dialog" aria-modal="true" aria-label="More Hermes features">
+    <div class="mobile-app-menu-grabber" aria-hidden="true"></div>
+    <div class="mobile-app-menu-title">More</div>
+    <div class="mobile-app-menu-grid">
+      <button type="button" data-mobile-panel="kanban" onclick="mobileAppSwitchPanel('kanban')"><span>Kanban</span></button>
+      <button type="button" data-mobile-panel="memory" onclick="mobileAppSwitchPanel('memory')"><span>Memory</span></button>
+      <button type="button" data-mobile-panel="workspaces" onclick="mobileAppSwitchPanel('workspaces')"><span>Spaces</span></button>
+      <button type="button" data-mobile-panel="profiles" onclick="mobileAppSwitchPanel('profiles')"><span>Profiles</span></button>
+      <button type="button" data-mobile-panel="todos" onclick="mobileAppSwitchPanel('todos')"><span>Todos</span></button>
+      <button type="button" data-mobile-panel="insights" onclick="mobileAppSwitchPanel('insights')"><span>Insights</span></button>
+      <button type="button" data-mobile-panel="logs" onclick="mobileAppSwitchPanel('logs')"><span>Logs</span></button>
+      <button type="button" data-mobile-panel="settings" onclick="mobileAppSwitchPanel('settings')"><span>Settings</span></button>
+    </div>
+  </div>
+</div>
 <div class="app-dialog-overlay" id="appDialogOverlay" style="display:none" aria-hidden="true">
   <div class="app-dialog" id="appDialog" role="dialog" aria-modal="true" aria-labelledby="appDialogTitle" aria-describedby="appDialogDesc">
     <div class="app-dialog-header">

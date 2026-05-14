@@ -4385,3 +4385,49 @@ main.main.showing-logs > #mainLogs{display:flex;}
 :root[data-skin="cupertino"] .skill-chevron{display:inline-flex;color:var(--ios-tertiary-label);flex:0 0 auto;}
 :root[data-skin="cupertino"] .cron-item{border-radius:16px;background:var(--ios-secondary-bg);border:.5px solid var(--ios-separator);box-shadow:0 1px 0 rgba(255,255,255,.16) inset;}
 :root[data-skin="cupertino"] .cron-item.active{background:color-mix(in srgb,var(--accent) 11%,var(--ios-secondary-bg));border-color:color-mix(in srgb,var(--accent) 24%,var(--ios-separator));}
+
+/* ── Mobile app navigation split: global app tabs vs chat session drawer ── */
+.mobile-app-tabbar,.mobile-app-menu{display:none;}
+@media(max-width:640px){
+  .mobile-app-tabbar{
+    display:flex;position:fixed;left:0;right:0;bottom:0;z-index:430;
+    height:calc(58px + var(--app-safe-bottom));
+    padding:6px max(8px,var(--app-safe-left)) max(6px,var(--app-safe-bottom)) max(8px,var(--app-safe-right));
+    box-sizing:border-box;align-items:flex-start;gap:4px;
+    background:color-mix(in srgb,var(--ios-secondary-bg,var(--surface)) 76%,transparent);
+    border-top:.5px solid var(--ios-separator,var(--border));
+    -webkit-backdrop-filter:saturate(180%) blur(24px);backdrop-filter:saturate(180%) blur(24px);
+  }
+  .mobile-app-tab{flex:1 1 0;min-width:0;height:46px;border:0;border-radius:14px;background:transparent;color:var(--ios-secondary-label,var(--muted));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font:600 10.5px/1 var(--font-ui,inherit);letter-spacing:-.01em;-webkit-tap-highlight-color:transparent;}
+  .mobile-app-tab svg{width:21px;height:21px;display:block;}
+  .mobile-app-tab.active{color:var(--accent);background:color-mix(in srgb,var(--accent) 11%,transparent);}
+  .mobile-app-tab:active{transform:scale(.96);background:var(--ios-row-press,var(--hover-bg));}
+  .mobile-app-menu{display:block;position:fixed;inset:0;z-index:440;pointer-events:none;}
+  .mobile-app-menu.open{pointer-events:auto;}
+  .mobile-app-menu-backdrop{position:absolute;inset:0;border:0;background:rgba(0,0,0,0);opacity:0;transition:opacity .18s ease,background-color .18s ease;}
+  .mobile-app-menu.open .mobile-app-menu-backdrop{background:rgba(0,0,0,.22);opacity:1;}
+  .mobile-app-menu-sheet{position:absolute;left:max(8px,var(--app-safe-left));right:max(8px,var(--app-safe-right));bottom:calc(68px + var(--app-safe-bottom));padding:8px 12px 14px;border-radius:24px;background:color-mix(in srgb,var(--ios-secondary-bg,var(--surface)) 88%,transparent);border:.5px solid var(--ios-separator,var(--border));box-shadow:0 24px 60px rgba(0,0,0,.28);transform:translateY(18px) scale(.98);opacity:0;transition:transform .26s cubic-bezier(.32,.72,0,1),opacity .18s ease;-webkit-backdrop-filter:saturate(180%) blur(28px);backdrop-filter:saturate(180%) blur(28px);}
+  .mobile-app-menu.open .mobile-app-menu-sheet{transform:translateY(0) scale(1);opacity:1;}
+  .mobile-app-menu-grabber{width:36px;height:4px;border-radius:999px;background:var(--ios-tertiary-label,var(--muted));opacity:.42;margin:2px auto 10px;}
+  .mobile-app-menu-title{font:750 17px/1.2 var(--font-display,var(--font-ui,inherit));letter-spacing:-.03em;color:var(--ios-label,var(--text));padding:0 4px 10px;}
+  .mobile-app-menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+  .mobile-app-menu-grid button{min-height:46px;border:0;border-radius:15px;background:var(--ios-fill,var(--input-bg));color:var(--ios-label,var(--text));font:650 14px/1 var(--font-ui,inherit);text-align:left;padding:0 14px;}
+  .mobile-app-menu-grid button.active{color:var(--accent);background:color-mix(in srgb,var(--accent) 13%,var(--ios-fill,var(--input-bg)));}
+  .mobile-app-menu-grid button:active{transform:scale(.985);background:var(--ios-row-press,var(--hover-bg));}
+
+  /* The old mobile sidebar is now contextual: Chat uses it for sessions; other
+     sections use it for that section's list. Global app switching is the tabbar. */
+  .sidebar{bottom:calc(58px + var(--app-safe-bottom))!important;}
+  .sidebar-nav{display:none!important;}
+  .sidebar.mobile-open .session-list,
+  .sidebar.mobile-open .cron-list,
+  .sidebar.mobile-open .kanban-list,
+  .sidebar.mobile-open .skills-list,
+  .sidebar.mobile-open .side-menu{padding-bottom:18px;}
+  :root[data-skin="cupertino"] body[data-panel="chat"] .composer-wrap,
+  body[data-panel="chat"] .composer-wrap{padding-bottom:calc(64px + var(--app-safe-bottom))!important;}
+  body:not([data-panel="chat"]) .main-view-body,
+  body:not([data-panel="chat"]) .main-view-empty,
+  body:not([data-panel="chat"]) .settings-main{padding-bottom:calc(76px + var(--app-safe-bottom));}
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .sidebar{top:var(--app-titlebar-safe-top);}
+}

@@ -52,6 +52,7 @@ function syncAppTitlebar() {
   const panel = (typeof _currentPanel === 'string' && _currentPanel) ? _currentPanel : 'chat';
   if (document.body) document.body.dataset.panel = panel;
   if (document.documentElement) document.documentElement.dataset.panel = panel;
+  if (typeof syncMobileAppNav === 'function') syncMobileAppNav(panel);
   let mainText = '';
   let subText = '';
   let sourceLabel = '';
@@ -217,6 +218,8 @@ async function switchPanel(name, opts = {}) {
   // Expose the active panel to CSS so the app chrome can become chat-only/contextual.
   if (document.body) document.body.dataset.panel = nextPanel;
   if (document.documentElement) document.documentElement.dataset.panel = nextPanel;
+  if (typeof syncMobileAppNav === 'function') syncMobileAppNav(nextPanel);
+  if (typeof closeMobileAppMenu === 'function' && !opts.keepMobileAppMenu) closeMobileAppMenu();
   // Update nav tabs (rail + mobile sidebar-nav share data-panel)
   document.querySelectorAll('[data-panel]').forEach(t => t.classList.toggle('active', t.dataset.panel === nextPanel));
   // Refresh aria-expanded on the newly-active rail button to mirror sidebar state.

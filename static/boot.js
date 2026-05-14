@@ -210,6 +210,11 @@ function syncWorkspacePanelUI(){
 }
 
 function toggleMobileSidebar(){
+  // Mobile sidebar is now the chat-only SessionNavigation. Global app access
+  // lives in the bottom tab bar / More sheet, so this button should never open
+  // the old mixed app+session menu outside Chat.
+  if(typeof _currentPanel !== 'undefined' && _currentPanel !== 'chat')return;
+  closeMobileAppMenu();
   const sidebar=document.querySelector('.sidebar');
   const overlay=$('mobileOverlay');
   if(!sidebar)return;
@@ -222,6 +227,50 @@ function closeMobileSidebar(){
   const overlay=$('mobileOverlay');
   if(sidebar)sidebar.classList.remove('mobile-open');
   if(overlay)overlay.classList.remove('visible');
+}
+function syncMobileAppNav(panel){
+  const active=panel||((typeof _currentPanel==='string'&&_currentPanel)||'chat');
+  const direct=new Set(['chat','skills','tasks']);
+  document.querySelectorAll('.mobile-app-tab[data-mobile-panel]').forEach(btn=>{
+    const key=btn.dataset.mobilePanel;
+    btn.classList.toggle('active',key===active||(key==='more'&&!direct.has(active)));
+  });
+  document.querySelectorAll('.mobile-app-menu [data-mobile-panel]').forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.mobilePanel===active);
+  });
+}
+function toggleMobileAppMenu(){
+  const menu=$('mobileAppMenu');
+  if(!menu)return;
+  const open=menu.classList.contains('open');
+  if(open)closeMobileAppMenu();
+  else{
+    closeMobileSidebar();
+    menu.classList.add('open');
+    menu.setAttribute('aria-hidden','false');
+    syncMobileAppNav();
+    document.querySelectorAll('.mobile-app-tab[data-mobile-panel="more"]').forEach(btn=>btn.classList.add('active'));
+  }
+}
+function closeMobileAppMenu(){
+  const menu=$('mobileAppMenu');
+  if(!menu)return;
+  menu.classList.remove('open');
+  menu.setAttribute('aria-hidden','true');
+  if(typeof syncMobileAppNav==='function')syncMobileAppNav();
+}
+async function mobileAppSwitchPanel(name){
+  closeMobileAppMenu();
+  const ok=await switchPanel(name,{fromMobileTab:true});
+  if(ok===false)return;
+  syncMobileAppNav(name);
+  if(name==='chat'){
+    closeMobileSidebar();
+  }else{
+    const sidebar=document.querySelector('.sidebar');
+    const overlay=$('mobileOverlay');
+    if(sidebar){sidebar.classList.add('mobile-open');if(overlay)overlay.classList.add('visible');}
+  }
 }
 
 // ── Desktop sidebar collapse toggle ────────────────────────────────────────
@@ -295,17 +344,10 @@ function toggleWorkspacePanel(force){
   openWorkspacePanel(nextMode);
 }
 function mobileSwitchPanel(name){
-  switchPanel(name);
-  if(name==='chat'){
-    closeMobileSidebar();
-  } else {
-    const sidebar=document.querySelector('.sidebar');
-    const overlay=$('mobileOverlay');
-    if(sidebar){
-      sidebar.classList.add('mobile-open');
-      if(overlay)overlay.classList.add('visible');
-    }
-  }
+  // Legacy inline callers now use the same separated app navigation path:
+  // switch the global section, then close the session drawer instead of keeping
+  // the mixed sidebar open on top of non-chat detail panes.
+  mobileAppSwitchPanel(name);
 }
 
 $('btnSend').onclick=()=>{
