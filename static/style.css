@@ -4383,9 +4383,9 @@ main.main.showing-logs > #mainLogs{display:flex;}
     /* Do not reserve the full iOS home-indicator inset for the app rail. Safari/PWA
        already gives that inset a lot of visual weight; using it 1:1 made the bottom
        chrome feel roughly twice as tall on real iPhones. */
-    --mobile-app-rail-safe:clamp(0px,calc(var(--app-safe-bottom) * .24),8px);
-    --mobile-app-rail-height:calc(38px + var(--mobile-app-rail-safe));
-    --mobile-app-rail-reserve:calc(var(--mobile-app-rail-height) + 4px);
+    --mobile-app-rail-safe:clamp(0px,calc(var(--app-safe-bottom) * .12),4px);
+    --mobile-app-rail-height:calc(24px + var(--mobile-app-rail-safe));
+    --mobile-app-rail-reserve:calc(var(--mobile-app-rail-height) + 2px);
   }
   .mobile-app-tabbar{
     display:grid;position:fixed;left:0;right:0;bottom:0;z-index:430;
@@ -4397,7 +4397,7 @@ main.main.showing-logs > #mainLogs{display:flex;}
     border-top:.5px solid var(--ios-separator,var(--border));
     -webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);
   }
-  .mobile-app-tab{min-width:0;height:34px;border:0;border-radius:10px;background:transparent;color:var(--ios-secondary-label,var(--muted));display:flex;align-items:center;justify-content:center;font:600 0/1 var(--font-ui,inherit);-webkit-tap-highlight-color:transparent;}
+  .mobile-app-tab{min-width:0;height:22px;border:0;border-radius:8px;background:transparent;color:var(--ios-secondary-label,var(--muted));display:flex;align-items:center;justify-content:center;font:600 0/1 var(--font-ui,inherit);-webkit-tap-highlight-color:transparent;}
   .mobile-app-tab span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
   .mobile-app-tab svg{width:18px;height:18px;display:block;}
   .mobile-app-tab.active{color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);}
@@ -4426,8 +4426,8 @@ main.main.showing-logs > #mainLogs{display:flex;}
     background:var(--ios-grouped-bg,var(--bg));
   }
   :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-header{
-    min-height:auto;
-    padding:clamp(12px,calc(var(--app-titlebar-safe-top) - 12px),36px) 16px 8px;
+    min-height:calc(70px + var(--app-titlebar-safe-top));
+    padding:calc(var(--app-titlebar-safe-top) + 14px) 16px 10px;
     box-sizing:border-box;
     align-items:flex-end;
     border-bottom:0;
@@ -4439,9 +4439,9 @@ main.main.showing-logs > #mainLogs{display:flex;}
   :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-title,
   :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-title-row .main-view-title{
     font-family:var(--font-display);
-    font-size:30px;
-    line-height:1.08;
-    font-weight:780;
+    font-size:38px;
+    line-height:1.04;
+    font-weight:800;
     letter-spacing:-.04em;
     color:var(--ios-label,var(--text));
   }
