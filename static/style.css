@@ -171,6 +171,11 @@
     --user-bubble-bg:#0A84FF;--user-bubble-border:rgba(0,102,204,0.28);
     --user-bubble-text:#fff;--user-bubble-placeholder:rgba(255,255,255,0.72);
     --user-selection-bg:rgba(255,255,255,0.28);--user-selection-text:#fff;
+    --ios-bg:#F5F5F7;--ios-grouped-bg:#F2F2F7;--ios-secondary-bg:#FFFFFF;
+    --ios-fill:rgba(120,120,128,0.12);--ios-separator:rgba(60,60,67,0.20);
+    --ios-label:#1D1D1F;--ios-secondary-label:rgba(60,60,67,0.68);--ios-tertiary-label:rgba(60,60,67,0.38);
+    --ios-row-press:rgba(60,60,67,0.10);--ios-row-active:rgba(10,132,255,0.14);
+    --ios-spring:cubic-bezier(.32,.72,0,1);
   }
   :root.dark[data-skin="cupertino"]{
     --bg:#000000;--sidebar:rgba(28,28,30,0.82);--surface:rgba(28,28,30,0.72);
@@ -188,6 +193,10 @@
     --user-bubble-bg:#0A84FF;--user-bubble-border:rgba(100,181,255,0.35);
     --user-bubble-text:#fff;--user-bubble-placeholder:rgba(255,255,255,0.72);
     --user-selection-bg:rgba(255,255,255,0.30);--user-selection-text:#fff;
+    --ios-bg:#000000;--ios-grouped-bg:#000000;--ios-secondary-bg:#1C1C1E;
+    --ios-fill:rgba(120,120,128,0.24);--ios-separator:rgba(84,84,88,0.58);
+    --ios-label:#F5F5F7;--ios-secondary-label:rgba(235,235,245,0.62);--ios-tertiary-label:rgba(235,235,245,0.32);
+    --ios-row-press:rgba(255,255,255,0.08);--ios-row-active:rgba(10,132,255,0.22);
   }
   :root[data-skin="cupertino"] body{
     background:
@@ -1612,13 +1621,13 @@
     /* Viewport-phone rules handle app chrome and touch sizing; they intentionally
        overlap the container compact rules for actual phones. */
     /* ── Mobile menu: full-width panel below the titlebar ── */
-    .sidebar{position:fixed;left:-100vw;top:calc(var(--app-titlebar-mobile-height) + var(--app-titlebar-safe-top));bottom:0;width:100vw!important;max-width:100vw;z-index:200;
-      padding-top:0;border-right:none;box-shadow:none;overflow:hidden;
-      transition:left .25s cubic-bezier(.22,1,.36,1),box-shadow .25s ease;}
-    .sidebar.mobile-open{left:0;box-shadow:0 14px 40px rgba(0,0,0,.28);}
-    .sidebar.mobile-open .session-list{padding-left:12px;padding-right:12px;}
-    .sidebar.mobile-open .session-title{font-size:14px;}
-    .sidebar.mobile-open .session-meta{font-size:11px;}
+    .sidebar{position:fixed;left:0;top:calc(var(--app-titlebar-mobile-height) + var(--app-titlebar-safe-top));bottom:0;width:100vw!important;max-width:100vw;z-index:200;
+      padding-top:0;border-right:none;box-shadow:none;overflow:hidden;transform:translate3d(-100%,0,0);will-change:transform;opacity:.98;
+      transition:transform .34s cubic-bezier(.32,.72,0,1),box-shadow .28s ease,opacity .18s ease;}
+    .sidebar.mobile-open{transform:translate3d(0,0,0);box-shadow:0 14px 40px rgba(0,0,0,.28);opacity:1;}
+    .sidebar.mobile-open .session-list{padding-left:12px;padding-right:12px;padding-bottom:max(28px,calc(var(--app-safe-bottom) + 18px));}
+    .sidebar.mobile-open .session-title{font-size:15px;}
+    .sidebar.mobile-open .session-meta{font-size:12.5px;}
     .sidebar .resize-handle{display:none;}
     /* Hamburger button (in app titlebar on mobile) */
     .app-titlebar{justify-content:space-between;}
@@ -1657,7 +1666,7 @@
     .msg-role{font-size:12px;}
     .composer-wrap{padding:8px 10px max(2px,calc(var(--app-safe-bottom) * .12))!important;}
     .composer-box{border-radius:14px 14px 10px 10px;}
-    :root[data-skin="cupertino"] .sidebar-nav{padding-top:10px;padding-bottom:8px;gap:8px;}
+    :root[data-skin="cupertino"] .sidebar-nav{padding-top:10px;padding-bottom:8px;padding-left:12px;padding-right:18px;gap:8px;scroll-padding-inline:12px;}
     :root[data-skin="cupertino"] .sidebar-nav .nav-tab{flex-basis:46px;width:46px;height:40px;border-radius:15px;}
     :root[data-skin="cupertino"] .sidebar-nav .nav-tab svg{width:21px;height:21px;}
 
@@ -1718,12 +1727,56 @@
     .session-item{min-height:44px;padding:10px 40px 10px 12px;}
     .session-item.streaming,.session-item.unread{padding-right:40px;}
     .session-actions{opacity:1;pointer-events:auto;}
+    :root[data-skin="cupertino"] body{overscroll-behavior-x:none;-webkit-tap-highlight-color:transparent;}
+    :root[data-skin="cupertino"] .sidebar{background:var(--ios-grouped-bg);}
+    :root[data-skin="cupertino"] .sidebar::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 18% 0%,rgba(10,132,255,.12),transparent 34%),radial-gradient(circle at 88% 4%,rgba(191,90,242,.08),transparent 30%);opacity:.9;}
+    :root[data-skin="cupertino"] .sidebar > *{position:relative;z-index:1;}
+    :root[data-skin="cupertino"] .panel-head-chat{min-height:72px;padding:16px 18px 8px;border-bottom:0;text-transform:none;letter-spacing:0;color:var(--ios-label);align-items:flex-end;}
+    :root[data-skin="cupertino"] .panel-head-title-wrap{display:flex;flex-direction:column;gap:1px;font-family:var(--font-display);font-size:28px;font-weight:750;line-height:1.08;letter-spacing:-.035em;color:var(--ios-label);}
+    :root[data-skin="cupertino"] .panel-head-subtitle{display:block;font-family:var(--font-ui);font-size:12px;font-weight:650;letter-spacing:.02em;color:var(--ios-secondary-label);}
+    :root[data-skin="cupertino"] .panel-head-btn{width:34px;height:34px;border-radius:999px;background:var(--ios-fill);color:var(--accent);}
+    :root[data-skin="cupertino"] .panel-head-btn svg{width:17px;height:17px;}
+    :root[data-skin="cupertino"] .panel-head-btn:active{transform:scale(.94);background:var(--ios-row-press);}
+    :root[data-skin="cupertino"] .session-search.sidebar-search{padding:6px 18px 12px;}
+    :root[data-skin="cupertino"] .sidebar-search input{height:38px;border:0;border-radius:12px;background:var(--ios-fill);font-size:17px;letter-spacing:-.02em;padding-left:34px;box-shadow:none;color:var(--ios-label);}
+    :root[data-skin="cupertino"] .sidebar-search input:focus{box-shadow:0 0 0 1px rgba(10,132,255,.34),0 0 0 4px rgba(10,132,255,.10);background:color-mix(in srgb,var(--ios-fill) 78%,var(--ios-secondary-bg));}
+    :root[data-skin="cupertino"] .sidebar-search-icon{left:30px;width:16px;height:16px;color:var(--ios-secondary-label);}
+    :root[data-skin="cupertino"] .project-bar{margin:2px 18px 10px;padding:4px;background:var(--ios-fill);border-radius:14px;gap:4px;}
+    :root[data-skin="cupertino"] .project-chip,
+    :root[data-skin="cupertino"] .project-create-btn{border:0;background:transparent;border-radius:11px;min-height:30px;font-size:13px;font-weight:650;color:var(--ios-secondary-label);}
+    :root[data-skin="cupertino"] .project-chip.active{background:var(--ios-secondary-bg);color:var(--ios-label);box-shadow:0 1px 3px rgba(0,0,0,.10);}
+    :root[data-skin="cupertino"] .session-date-group{margin:0 18px 14px;border-radius:18px;overflow:hidden;background:var(--ios-secondary-bg);box-shadow:0 1px 0 var(--ios-separator),0 10px 28px rgba(0,0,0,.05);}
+    :root.dark[data-skin="cupertino"] .session-date-group{box-shadow:0 0 0 .5px var(--ios-separator);}
+    :root[data-skin="cupertino"] .session-date-header{padding:9px 16px 6px;background:var(--ios-grouped-bg);font-size:12px;font-weight:750;letter-spacing:.045em;color:var(--ios-secondary-label);}
+    :root[data-skin="cupertino"] .session-date-body{background:var(--ios-secondary-bg);}
+    :root[data-skin="cupertino"] .session-item{min-height:64px;margin:0;border-radius:0;padding:10px 46px 10px 16px;background:transparent;color:var(--ios-label);align-items:center;transition:background-color .14s ease,transform .12s ease;}
+    :root[data-skin="cupertino"] .session-item::after{content:"";position:absolute;left:16px;right:0;bottom:0;height:.5px;background:var(--ios-separator);opacity:.78;}
+    :root[data-skin="cupertino"] .session-date-body .session-item:last-child::after{display:none;}
+    :root[data-skin="cupertino"] .session-item:hover{background:var(--ios-row-press);transform:none;}
+    :root[data-skin="cupertino"] .session-item:active{background:var(--ios-row-press);transform:scale(.992);}
+    :root[data-skin="cupertino"] .session-item.active{background:color-mix(in srgb,var(--accent) 16%,transparent);box-shadow:none;}
+    :root[data-skin="cupertino"] .session-text{gap:4px;}
+    :root[data-skin="cupertino"] .session-title-row{gap:7px;align-items:first baseline;}
+    :root[data-skin="cupertino"] .session-title{font-size:17px;font-weight:600;line-height:1.22;letter-spacing:-.023em;color:var(--ios-label);white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+    :root[data-skin="cupertino"] .session-meta{display:block;color:var(--ios-secondary-label);font-size:13px;line-height:1.25;letter-spacing:-.01em;}
+    :root[data-skin="cupertino"] .session-time{font-size:12px;color:var(--ios-tertiary-label);font-weight:600;margin-left:6px;align-self:flex-start;padding-top:2px;}
+    :root[data-skin="cupertino"] .session-actions{right:10px;}
+    :root[data-skin="cupertino"] .session-actions-trigger{width:32px;height:32px;border-radius:999px;background:transparent;color:var(--ios-tertiary-label);}
+    :root[data-skin="cupertino"] .session-actions-trigger:hover,
+    :root[data-skin="cupertino"] .session-actions-trigger.active{background:var(--ios-fill);color:var(--accent);}
+    :root[data-skin="cupertino"] .session-select-toggle{margin:2px 18px 18px;border-radius:14px;background:var(--ios-secondary-bg);min-height:42px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:14px;font-weight:650;opacity:1;}
+    :root[data-skin="cupertino"] .sidebar.mobile-open .session-date-group{animation:cupertinoMenuItems .34s var(--ios-spring) both;}
+    :root[data-skin="cupertino"] .sidebar.mobile-open .session-date-group:nth-of-type(2){animation-delay:.025s;}
+    :root[data-skin="cupertino"] .sidebar.mobile-open .session-date-group:nth-of-type(3){animation-delay:.045s;}
+    :root[data-skin="cupertino"] .sidebar.mobile-open .session-date-group:nth-of-type(4){animation-delay:.065s;}
     /* Empty state */
     .empty-state h2{font-size:18px;}
     .empty-state p{font-size:13px;}
     .suggestion-grid{max-width:100%!important;}
     .suggestion{font-size:12px;padding:10px 12px;}
   }
+
+  @keyframes cupertinoMenuItems{from{opacity:0;transform:translateY(10px) scale(.985);}to{opacity:1;transform:translateY(0) scale(1);}}
 
   @media (max-width: 340px){
     /* Extreme legacy-phone widths (e.g. 320px) cannot fit five 44px

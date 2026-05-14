@@ -1286,7 +1286,7 @@ const _lineageReportCache = new Map();
 const _lineageReportInflight = new Map();
 let _lineageReportCacheGeneration = 0;
 let _sessionVisibleSidebarIds = [];
-const SESSION_VIRTUAL_ROW_HEIGHT = 52;
+const SESSION_VIRTUAL_ROW_HEIGHT = 64;
 const SESSION_VIRTUAL_BUFFER_ROWS = 12;
 const SESSION_VIRTUAL_THRESHOLD_ROWS = 80;
 let _sessionVirtualScrollList = null;
@@ -2849,7 +2849,12 @@ function renderSessionListFromCache(){
     titleRow.appendChild(ts);
     sessionText.appendChild(titleRow);
     const density=(window._sidebarDensity==='detailed'?'detailed':'compact');
-    if(density==='detailed'){
+    const forceMobileCupertinoMeta=Boolean(
+      window.matchMedia&&window.matchMedia('(max-width:640px)').matches&&
+      document.documentElement&&document.documentElement.dataset&&
+      document.documentElement.dataset.skin==='cupertino'
+    );
+    if(density==='detailed'||forceMobileCupertinoMeta){
       const metaBits=[];
       const msgCount=typeof s.message_count==='number'?s.message_count:0;
       const msgLabel=(typeof t==='function')
