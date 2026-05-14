@@ -8,6 +8,7 @@ at most twice per hour regardless of client count.
 Skips repos that are not git checkouts (e.g. Docker baked images where
 .git does not exist).
 """
+import os
 import subprocess
 import threading
 import time
