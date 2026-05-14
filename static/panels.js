@@ -50,6 +50,8 @@ function syncAppTitlebar() {
   const subEl = document.getElementById('appTitlebarSub');
   if (!titleEl) return;
   const panel = (typeof _currentPanel === 'string' && _currentPanel) ? _currentPanel : 'chat';
+  if (document.body) document.body.dataset.panel = panel;
+  if (document.documentElement) document.documentElement.dataset.panel = panel;
   let mainText = '';
   let subText = '';
   let sourceLabel = '';
@@ -212,6 +214,9 @@ async function switchPanel(name, opts = {}) {
     if (typeof _kanbanStopPolling === 'function') _kanbanStopPolling();
   }
   _currentPanel = nextPanel;
+  // Expose the active panel to CSS so the app chrome can become chat-only/contextual.
+  if (document.body) document.body.dataset.panel = nextPanel;
+  if (document.documentElement) document.documentElement.dataset.panel = nextPanel;
   // Update nav tabs (rail + mobile sidebar-nav share data-panel)
   document.querySelectorAll('[data-panel]').forEach(t => t.classList.toggle('active', t.dataset.panel === nextPanel));
   // Refresh aria-expanded on the newly-active rail button to mirror sidebar state.
@@ -455,6 +460,8 @@ async function loadCrons(animate) {
 
 function _renderCronDetail(job){
   _currentCronDetail = job;
+  // On phone, selecting a job should reveal the detail pane instead of leaving the full-width menu on top.
+  if (typeof closeMobileSidebar === 'function') closeMobileSidebar();
   const title = $('taskDetailTitle');
   const body = $('taskDetailBody');
   const empty = $('taskDetailEmpty');
@@ -3175,7 +3182,12 @@ function renderSkills(skills) {
       const el = document.createElement('div');
       el.className = 'skill-item';
       el.style.display = collapsed ? 'none' : '';
-      el.innerHTML = `<span class="skill-name">${esc(skill.name)}</span><span class="skill-desc">${esc(skill.description||'')}</span>`;
+      const desc = skill.description || '';
+      const initial = (skill.name || '?').replace(/^plugin:/,'').charAt(0).toUpperCase() || '?';
+      el.innerHTML = `
+        <span class="skill-orb" aria-hidden="true">${esc(initial)}</span>
+        <span class="skill-copy"><span class="skill-name">${esc(skill.name)}</span><span class="skill-desc">${esc(desc)}</span></span>
+        <span class="skill-chevron" aria-hidden="true">${li('chevron-right',14)}</span>`;
       el.onclick = () => openSkill(skill.name, el);
       sec.appendChild(el);
     }
@@ -3250,6 +3262,8 @@ function _setSkillHeaderButtons(mode) {
 }
 
 async function openSkill(name, el) {
+  // On phone, tapping a skill should navigate to its detail immediately.
+  if (typeof closeMobileSidebar === 'function') closeMobileSidebar();
   // Highlight active skill in the sidebar list
   document.querySelectorAll('.skill-item').forEach(e => e.classList.remove('active'));
   if (el) el.classList.add('active');

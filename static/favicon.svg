@@ -1,42 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
-  <defs>
-    <linearGradient id="bg" x1="120" y1="40" x2="900" y2="1000" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#8EE7FF"/>
-      <stop offset="0.38" stop-color="#0A84FF"/>
-      <stop offset="0.74" stop-color="#5E5CE6"/>
-      <stop offset="1" stop-color="#111827"/>
-    </linearGradient>
-    <radialGradient id="shine" cx="31%" cy="18%" r="70%">
-      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.70"/>
-      <stop offset="0.32" stop-color="#FFFFFF" stop-opacity="0.20"/>
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="gold" x1="350" y1="168" x2="690" y2="842" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#FFF7C6"/>
-      <stop offset="0.48" stop-color="#FFD60A"/>
-      <stop offset="1" stop-color="#FF9F0A"/>
-    </linearGradient>
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="30" stdDeviation="34" flood-color="#001A3A" flood-opacity="0.42"/>
-      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#001A3A" flood-opacity="0.24"/>
-    </filter>
-  </defs>
-  <rect width="1024" height="1024" rx="226" fill="url(#bg)"/>
-  <rect width="1024" height="1024" rx="226" fill="url(#shine)"/>
-  <path d="M210 126c150-80 420-78 610 48" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="24" stroke-linecap="round"/>
-
-  <g filter="url(#shadow)">
-    <!-- Two bold Mercury wings, kept simple for iOS home-screen readability. -->
-    <path d="M174 354c126-124 274-130 370-16-120-20-236 12-330 94-36 32-80 48-132 46 13-50 45-92 92-124z" fill="#FFFFFF" opacity="0.96"/>
-    <path d="M850 354c-126-124-274-130-370-16 120-20 236 12 330 94 36 32 80 48 132 46-13-50-45-92-92-124z" fill="#FFFFFF" opacity="0.96"/>
-    <path d="M224 514c104-54 218-50 320 16-128 8-232 50-312 126-32-38-34-90-8-142z" fill="#DFF6FF" opacity="0.78"/>
-    <path d="M800 514c-104-54-218-50-320 16 128 8 232 50 312 126 32-38 34-90 8-142z" fill="#DFF6FF" opacity="0.78"/>
-
-    <!-- Proud, instantly-legible Hermes H monogram. -->
-    <rect x="338" y="230" width="108" height="574" rx="54" fill="url(#gold)"/>
-    <rect x="578" y="230" width="108" height="574" rx="54" fill="url(#gold)"/>
-    <rect x="396" y="460" width="232" height="104" rx="52" fill="url(#gold)"/>
-    <circle cx="512" cy="190" r="48" fill="url(#gold)"/>
-    <path d="M392 250v520M632 250v520M418 512h188" fill="none" stroke="#FFFBE0" stroke-opacity="0.58" stroke-width="18" stroke-linecap="round"/>
-  </g>
+<defs><radialGradient id="bg" cx="28%" cy="20%" r="100%"><stop offset="0" stop-color="#40d4ff"/><stop offset=".35" stop-color="#6a4cff"/><stop offset=".68" stop-color="#ff3794"/><stop offset="1" stop-color="#ffb340"/></radialGradient><filter id="soft"><feGaussianBlur stdDeviation="20"/></filter></defs>
+<rect width="1024" height="1024" rx="225" fill="url(#bg)"/><ellipse cx="360" cy="180" rx="350" ry="190" fill="#fff" opacity=".16"/>
+<path d="M232 512c28-164 185-256 321-179 100 56 137 187 57 278-93 106-282 75-325-67-38-126 72-244 209-224 161 23 261 179 296 275" fill="none" stroke="#fff" stroke-width="118" stroke-linecap="round" stroke-linejoin="round" opacity=".22" filter="url(#soft)"/>
+<path d="M232 512c28-164 185-256 321-179 100 56 137 187 57 278-93 106-282 75-325-67-38-126 72-244 209-224 161 23 261 179 296 275" fill="none" stroke="#fff" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" opacity=".88"/>
+<path d="M466 430l45 160 47-160M482 514h62" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round" stroke-linejoin="round" opacity=".72"/>
 </svg>

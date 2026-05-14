@@ -4276,3 +4276,98 @@ main.main.showing-logs > #mainLogs{display:flex;}
 .log-line-debug{color:var(--muted);opacity:.75;}
 .logs-empty,.logs-hint{margin:8px 14px;padding:12px;border:1px solid var(--border);border-radius:8px;color:var(--muted);background:var(--surface);white-space:normal;font-family:var(--font-ui,system-ui,sans-serif);font-size:12px;}
 .logs-hint.warn{color:#f59e0b;border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.08);}
+
+
+/* ── Guillaume feedback: contextual floating chat chrome + iOS skill list ── */
+:root[data-skin="cupertino"] .app-titlebar{
+  position:fixed;
+  top:var(--app-titlebar-safe-top);
+  left:var(--app-safe-left);
+  right:var(--app-safe-right);
+  height:0;
+  min-height:0;
+  padding:10px 14px 0;
+  box-sizing:border-box;
+  border-bottom:0;
+  background:transparent;
+  box-shadow:none;
+  pointer-events:none;
+  z-index:420;
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+}
+:root[data-skin="cupertino"] .app-titlebar::before{display:none;}
+:root[data-skin="cupertino"] .app-titlebar-inner{
+  pointer-events:auto;
+  flex:0 1 auto;
+  max-width:min(560px,calc(100vw - 118px));
+  min-height:38px;
+  padding:5px 14px 5px 8px;
+  border:.5px solid color-mix(in srgb,var(--ios-separator) 86%,transparent);
+  border-radius:999px;
+  background:color-mix(in srgb,var(--ios-secondary-bg) 58%,transparent);
+  box-shadow:0 16px 38px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.24);
+  -webkit-backdrop-filter:saturate(190%) blur(26px);
+  backdrop-filter:saturate(190%) blur(26px);
+}
+:root.dark[data-skin="cupertino"] .app-titlebar-inner{background:rgba(28,28,30,.48);box-shadow:0 18px 44px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.08);}
+:root[data-skin="cupertino"] .app-titlebar-hamburger{pointer-events:auto;-webkit-app-region:no-drag;}
+:root[data-skin="cupertino"] .app-titlebar-spacer{pointer-events:none;}
+:root[data-skin="cupertino"] body:not([data-panel="chat"]) .app-titlebar-inner,
+:root[data-skin="cupertino"] body:not([data-panel="chat"]) .app-titlebar-spacer{display:none;}
+:root[data-skin="cupertino"] body:not([data-panel="chat"]) .app-titlebar{justify-content:flex-start;width:auto;right:auto;}
+@media(min-width:641px){
+  :root[data-skin="cupertino"] .app-titlebar-hamburger{display:none!important;}
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .app-titlebar{display:none;}
+  :root[data-skin="cupertino"] .messages-inner{padding-top:76px;}
+}
+@media(max-width:640px){
+  :root[data-skin="cupertino"]{--app-titlebar-mobile-height:58px;}
+  :root[data-skin="cupertino"] .app-titlebar{padding:8px 12px 0;justify-content:space-between;}
+  :root[data-skin="cupertino"] .app-titlebar-hamburger{width:40px;height:40px;border-radius:999px;background:color-mix(in srgb,var(--ios-secondary-bg) 64%,transparent);border:.5px solid var(--ios-separator);box-shadow:0 10px 24px rgba(0,0,0,.10);-webkit-backdrop-filter:saturate(180%) blur(22px);backdrop-filter:saturate(180%) blur(22px);}
+  :root[data-skin="cupertino"] .app-titlebar-inner{max-width:calc(100vw - 112px);min-height:38px;padding:5px 12px 5px 7px;}
+  :root[data-skin="cupertino"] .app-titlebar-copy{align-items:center;}
+  :root[data-skin="cupertino"] .app-titlebar-title{max-width:38vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  :root[data-skin="cupertino"] .app-titlebar-sub{display:none;}
+  :root[data-skin="cupertino"] .messages-inner{padding-top:74px;}
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .main-view-header{padding-left:64px;}
+}
+:root[data-skin="cupertino"] .skills-list{padding:10px 12px 18px;background:var(--ios-grouped-bg);}
+:root[data-skin="cupertino"] .skills-category{margin:0 0 18px;}
+:root[data-skin="cupertino"] .skills-cat-header{
+  padding:14px 4px 7px;
+  font-size:12px;
+  font-weight:760;
+  letter-spacing:.045em;
+  color:var(--ios-secondary-label);
+  text-transform:uppercase;
+  justify-content:space-between;
+}
+:root[data-skin="cupertino"] .skills-cat-header .cat-chevron{order:2;color:var(--ios-tertiary-label);}
+:root[data-skin="cupertino"] .skill-item{
+  min-height:62px;
+  padding:10px 12px;
+  margin:0;
+  border-radius:0;
+  background:var(--ios-secondary-bg);
+  border:0;
+  border-bottom:.5px solid var(--ios-separator);
+  align-items:center;
+  gap:11px;
+  color:var(--ios-label);
+  max-height:none;
+}
+:root[data-skin="cupertino"] .skills-category .skill-item:first-of-type{border-top-left-radius:16px;border-top-right-radius:16px;}
+:root[data-skin="cupertino"] .skills-category .skill-item:last-child{border-bottom-left-radius:16px;border-bottom-right-radius:16px;border-bottom-color:transparent;}
+:root[data-skin="cupertino"] .skill-item:hover{background:var(--ios-row-press);transform:none;}
+:root[data-skin="cupertino"] .skill-item.active{background:color-mix(in srgb,var(--accent) 12%,var(--ios-secondary-bg));color:var(--ios-label);}
+:root[data-skin="cupertino"] .skill-orb{
+  width:34px;height:34px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
+  font-size:15px;font-weight:760;color:#fff;background:linear-gradient(145deg,#64D2FF,#0A84FF 52%,#BF5AF2);box-shadow:inset 0 1px 0 rgba(255,255,255,.35);
+}
+:root[data-skin="cupertino"] .skill-copy{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1;}
+:root[data-skin="cupertino"] .skill-name{font-size:14px;font-weight:650;color:var(--ios-label);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+:root[data-skin="cupertino"] .skill-desc{font-size:12px;line-height:1.3;color:var(--ios-secondary-label);opacity:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;white-space:normal;}
+:root[data-skin="cupertino"] .skill-chevron{display:inline-flex;color:var(--ios-tertiary-label);flex:0 0 auto;}
+:root[data-skin="cupertino"] .cron-item{border-radius:16px;background:var(--ios-secondary-bg);border:.5px solid var(--ios-separator);box-shadow:0 1px 0 rgba(255,255,255,.16) inset;}
+:root[data-skin="cupertino"] .cron-item.active{background:color-mix(in srgb,var(--accent) 11%,var(--ios-secondary-bg));border-color:color-mix(in srgb,var(--accent) 24%,var(--ios-separator));}
