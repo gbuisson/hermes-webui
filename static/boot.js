@@ -1168,6 +1168,7 @@ const _SKINS=[
   {name:'Sisyphus', colors:['#A78BFA','#8B5CF6','#7C3AED']},
   {name:'Charizard',colors:['#FB923C','#F97316','#EA580C']},
   {name:'Sienna',   colors:['#D97757','#C06A49','#9A523A']},
+  {name:'Cupertino',colors:['#0A84FF','#64D2FF','#5E5CE6']},
 ];
 const _VALID_THEMES=new Set((_THEMES||[]).map(t=>t.value));
 const _VALID_SKINS=new Set((_SKINS||[]).map(s=>s.name.toLowerCase()));
@@ -1360,7 +1361,15 @@ function applyBotName(){
   const sidebarH1=document.querySelector('.sidebar-header h1');
   if(sidebarH1) sidebarH1.textContent=name;
   const logo=document.querySelector('.sidebar-header .logo');
-  if(logo) logo.textContent=name.charAt(0).toUpperCase();
+  if(logo){
+    const skin=(localStorage.getItem('hermes-skin')||'default').toLowerCase();
+    if(skin==='cupertino' && typeof li==='function'){
+      logo.innerHTML=li('sparkles',18);
+      logo.setAttribute('aria-label',name);
+    }else{
+      logo.textContent=name.charAt(0).toUpperCase();
+    }
+  }
   const topbarTitle=$('topbarTitle');
   if(topbarTitle && (!S.session)) topbarTitle.textContent=name;
   const msg=$('msg');

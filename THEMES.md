@@ -20,7 +20,7 @@ Preview is instant — the UI updates as you click.
 
 **Slash command:** Type `/theme <name>` in the composer. The command accepts
 both theme names (`system`, `dark`, `light`) and skin names (`default`, `ares`,
-`mono`, `slate`, `poseidon`, `sisyphus`, `charizard`, `sienna`). It updates the
+`mono`, `slate`, `poseidon`, `sisyphus`, `charizard`, `sienna`, `cupertino`). It updates the
 matching axis and leaves the other one alone.
 
 **Persistence:** Both choices are stored in `localStorage` for flicker-free
@@ -54,6 +54,7 @@ absent for light. System mode tracks the OS preference at runtime.
 | **Sisyphus** | Vivid purple. Distinctive without being loud. |
 | **Charizard** | Warm orange. Energetic and easy on the eyes. |
 | **Sienna** | Warm clay and sand earth palette. Soft and natural. |
+| **Cupertino** | macOS/iOS glass surfaces, neutral Apple palette, blue system accent. |
 
 Each skin defines paired light + dark variants so it reads cleanly on either
 theme. The skin is applied as `data-skin="<name>"` on `<html>` (the default
