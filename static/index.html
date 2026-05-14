@@ -1205,40 +1205,40 @@
 </div>
 <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileSidebar()"></div>
 <nav class="mobile-app-tabbar" aria-label="App navigation">
-  <button class="mobile-app-tab active" data-mobile-panel="chat" onclick="mobileAppSwitchPanel('chat')" type="button" aria-label="Chat">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    <span>Chat</span>
+  <button class="mobile-app-tab active" data-mobile-panel="chat" onclick="mobileAppSwitchPanel('chat')" type="button" aria-label="Chat" title="Chat">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Chat</span>
   </button>
-  <button class="mobile-app-tab" data-mobile-panel="skills" onclick="mobileAppSwitchPanel('skills')" type="button" aria-label="Skills">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
-    <span>Skills</span>
+  <button class="mobile-app-tab" data-mobile-panel="tasks" onclick="mobileAppSwitchPanel('tasks')" type="button" aria-label="Jobs" title="Jobs">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Jobs</span>
   </button>
-  <button class="mobile-app-tab" data-mobile-panel="tasks" onclick="mobileAppSwitchPanel('tasks')" type="button" aria-label="Jobs">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-    <span>Jobs</span>
+  <button class="mobile-app-tab" data-mobile-panel="kanban" onclick="mobileAppSwitchPanel('kanban')" type="button" aria-label="Kanban" title="Kanban">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M16 4v16M3 10h18"/></svg><span>Kanban</span>
   </button>
-  <button class="mobile-app-tab" data-mobile-panel="more" onclick="toggleMobileAppMenu()" type="button" aria-label="More">
-    <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
-    <span>More</span>
+  <button class="mobile-app-tab" data-mobile-panel="skills" onclick="mobileAppSwitchPanel('skills')" type="button" aria-label="Skills" title="Skills">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg><span>Skills</span>
+  </button>
+  <button class="mobile-app-tab" data-mobile-panel="memory" onclick="mobileAppSwitchPanel('memory')" type="button" aria-label="Memory" title="Memory">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-5 0 2.5 2.5 0 0 1-3-3 3 3 0 0 1 1-5.7 2.5 2.5 0 0 1 1.5-4.6A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3-3 3 3 0 0 0-1-5.7 2.5 2.5 0 0 0-1.5-4.6A2.5 2.5 0 0 0 14.5 2Z"/></svg><span>Memory</span>
+  </button>
+  <button class="mobile-app-tab" data-mobile-panel="workspaces" onclick="mobileAppSwitchPanel('workspaces')" type="button" aria-label="Spaces" title="Spaces">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Spaces</span>
+  </button>
+  <button class="mobile-app-tab" data-mobile-panel="profiles" onclick="mobileAppSwitchPanel('profiles')" type="button" aria-label="Profiles" title="Profiles">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profiles</span>
+  </button>
+  <button class="mobile-app-tab" data-mobile-panel="todos" onclick="mobileAppSwitchPanel('todos')" type="button" aria-label="Todos" title="Todos">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="6" height="6" rx="1"/><path d="m3 17 2 2 4-4M13 6h8M13 12h8M13 18h8"/></svg><span>Todos</span>
+  </button>
+  <button class="mobile-app-tab" data-mobile-panel="insights" onclick="mobileAppSwitchPanel('insights')" type="button" aria-label="Insights" title="Insights">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg><span>Insights</span>
+  </button>
+  <button class="mobile-app-tab" data-mobile-panel="logs" onclick="mobileAppSwitchPanel('logs')" type="button" aria-label="Logs" title="Logs">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2"/></svg><span>Logs</span>
+  </button>
+  <button class="mobile-app-tab" data-mobile-panel="settings" onclick="mobileAppSwitchPanel('settings')" type="button" aria-label="Settings" title="Settings">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15 1.65 1.65 0 0 0 3 14H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09A1.65 1.65 0 0 0 15 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.6.2 1 .8 1 1.5H21a2 2 0 0 1 0 3h-.09c-.7 0-1.3.4-1.51 1.5Z"/></svg><span>Settings</span>
   </button>
 </nav>
-<div class="mobile-app-menu" id="mobileAppMenu" aria-hidden="true">
-  <button class="mobile-app-menu-backdrop" type="button" onclick="closeMobileAppMenu()" aria-label="Close app menu"></button>
-  <div class="mobile-app-menu-sheet" role="dialog" aria-modal="true" aria-label="More Hermes features">
-    <div class="mobile-app-menu-grabber" aria-hidden="true"></div>
-    <div class="mobile-app-menu-title">More</div>
-    <div class="mobile-app-menu-grid">
-      <button type="button" data-mobile-panel="kanban" onclick="mobileAppSwitchPanel('kanban')"><span>Kanban</span></button>
-      <button type="button" data-mobile-panel="memory" onclick="mobileAppSwitchPanel('memory')"><span>Memory</span></button>
-      <button type="button" data-mobile-panel="workspaces" onclick="mobileAppSwitchPanel('workspaces')"><span>Spaces</span></button>
-      <button type="button" data-mobile-panel="profiles" onclick="mobileAppSwitchPanel('profiles')"><span>Profiles</span></button>
-      <button type="button" data-mobile-panel="todos" onclick="mobileAppSwitchPanel('todos')"><span>Todos</span></button>
-      <button type="button" data-mobile-panel="insights" onclick="mobileAppSwitchPanel('insights')"><span>Insights</span></button>
-      <button type="button" data-mobile-panel="logs" onclick="mobileAppSwitchPanel('logs')"><span>Logs</span></button>
-      <button type="button" data-mobile-panel="settings" onclick="mobileAppSwitchPanel('settings')"><span>Settings</span></button>
-    </div>
-  </div>
-</div>
 <div class="app-dialog-overlay" id="appDialogOverlay" style="display:none" aria-hidden="true">
   <div class="app-dialog" id="appDialog" role="dialog" aria-modal="true" aria-labelledby="appDialogTitle" aria-describedby="appDialogDesc">
     <div class="app-dialog-header">

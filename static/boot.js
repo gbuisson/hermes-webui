@@ -230,37 +230,13 @@ function closeMobileSidebar(){
 }
 function syncMobileAppNav(panel){
   const active=panel||((typeof _currentPanel==='string'&&_currentPanel)||'chat');
-  const direct=new Set(['chat','skills','tasks']);
   document.querySelectorAll('.mobile-app-tab[data-mobile-panel]').forEach(btn=>{
-    const key=btn.dataset.mobilePanel;
-    btn.classList.toggle('active',key===active||(key==='more'&&!direct.has(active)));
-  });
-  document.querySelectorAll('.mobile-app-menu [data-mobile-panel]').forEach(btn=>{
     btn.classList.toggle('active',btn.dataset.mobilePanel===active);
   });
 }
-function toggleMobileAppMenu(){
-  const menu=$('mobileAppMenu');
-  if(!menu)return;
-  const open=menu.classList.contains('open');
-  if(open)closeMobileAppMenu();
-  else{
-    closeMobileSidebar();
-    menu.classList.add('open');
-    menu.setAttribute('aria-hidden','false');
-    syncMobileAppNav();
-    document.querySelectorAll('.mobile-app-tab[data-mobile-panel="more"]').forEach(btn=>btn.classList.add('active'));
-  }
-}
-function closeMobileAppMenu(){
-  const menu=$('mobileAppMenu');
-  if(!menu)return;
-  menu.classList.remove('open');
-  menu.setAttribute('aria-hidden','true');
-  if(typeof syncMobileAppNav==='function')syncMobileAppNav();
-}
+function toggleMobileAppMenu(){/* legacy no-op: mobile shows all app tabs directly */}
+function closeMobileAppMenu(){/* legacy no-op: mobile shows all app tabs directly */}
 async function mobileAppSwitchPanel(name){
-  closeMobileAppMenu();
   const ok=await switchPanel(name,{fromMobileTab:true});
   if(ok===false)return;
   syncMobileAppNav(name);
