@@ -4420,6 +4420,27 @@ main.main.showing-logs > #mainLogs{display:flex;}
   body:not([data-panel="chat"]) .settings-main{padding-bottom:var(--mobile-app-rail-reserve);}
   :root[data-skin="cupertino"] body:not([data-panel="chat"]) .layout{padding-top:0!important;}
   :root[data-skin="cupertino"] body:not([data-panel="chat"]) .sidebar{top:0;}
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .sidebar.mobile-open .panel-head:not(.panel-head-chat){
+    min-height:calc(70px + var(--app-titlebar-safe-top));
+    padding:calc(var(--app-titlebar-safe-top) + 14px) 16px 10px;
+    box-sizing:border-box;
+    align-items:flex-end;
+    border-bottom:0;
+    background:var(--ios-grouped-bg,var(--bg));
+  }
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .sidebar.mobile-open .panel-head:not(.panel-head-chat) > span:first-child{
+    font-family:var(--font-display);
+    font-size:38px;
+    line-height:1.04;
+    font-weight:800;
+    letter-spacing:-.04em;
+    color:var(--ios-label,var(--text));
+    text-transform:none;
+  }
+  :root[data-skin="cupertino"] body:not([data-panel="chat"]) .sidebar.mobile-open .panel-head:not(.panel-head-chat) .panel-head-actions{
+    align-self:flex-end;
+    padding-bottom:2px;
+  }
 
   /* iOS-style section screens: visible large title, no fake blurred notch band,
      compact vertical rhythm, content tucked directly under the title. */
