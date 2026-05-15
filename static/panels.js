@@ -3529,7 +3529,7 @@ function _renderMemoryDetail(section) {
   const inner = content
     ? `<div class="memory-content preview-md">${renderMd(content)}</div>`
     : `<div class="memory-empty">${esc(t(meta.emptyKey))}</div>`;
-  body.innerHTML = `<div class="main-view-content">${mtimeHtml}${inner}</div>`;
+  body.innerHTML = `<div class="main-view-content memory-detail-content">${mtimeHtml}${inner}</div>`;
   body.style.display = '';
   if (empty) empty.style.display = 'none';
   _memoryMode = 'read';
@@ -3563,6 +3563,9 @@ function _renderMemoryEdit(section) {
 }
 
 function openMemorySection(section, el) {
+  // On phone, tapping a memory row should navigate to the detail pane immediately
+  // instead of leaving the contextual sidebar covering the unchanged detail.
+  if (typeof closeMobileSidebar === 'function') closeMobileSidebar();
   _currentMemorySection = section;
   document.querySelectorAll('#memoryPanel .side-menu-item').forEach(e => e.classList.remove('active'));
   if (el) el.classList.add('active');
@@ -4839,7 +4842,15 @@ async function loadMemory(force) {
         el.type = 'button';
         el.className = 'side-menu-item';
         if (_currentMemorySection === s.key) el.classList.add('active');
-        el.innerHTML = `${li(s.iconKey,16)}<span>${esc(t(s.labelKey))}</span>`;
+        const content = _memorySectionContent(s.key);
+        const mtime = _memorySectionMtime(s.key);
+        const mtimeStr = mtime ? new Date(mtime * 1000).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : '';
+        const preview = content ? content.replace(/[#*_`>\-\[\]()]/g, '').replace(/\s+/g, ' ').trim().slice(0, 96) : t(s.emptyKey);
+        el.innerHTML = `
+          <span class="memory-row-icon" aria-hidden="true">${li(s.iconKey,16)}</span>
+          <span class="memory-row-copy"><span class="memory-row-title">${esc(t(s.labelKey))}</span><span class="memory-row-preview">${esc(preview || t(s.emptyKey))}</span></span>
+          ${mtimeStr ? `<span class="memory-row-date">${esc(mtimeStr)}</span>` : ''}
+          <span class="memory-row-chevron" aria-hidden="true">${li('chevron-right',14)}</span>`;
         el.onclick = () => openMemorySection(s.key, el);
         panel.appendChild(el);
       }

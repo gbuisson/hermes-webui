@@ -5420,3 +5420,191 @@ main.main.showing-logs > #mainLogs{display:flex;}
     background:var(--ios-secondary-bg,var(--surface));
   }
 }
+
+/* Memory: iOS Settings-style grouped rows and single-card detail surface. */
+:root[data-skin="cupertino"] body[data-panel="memory"] .sidebar,
+:root[data-skin="cupertino"] body[data-panel="memory"] #mainMemory,
+:root[data-skin="cupertino"] body[data-panel="memory"] #mainMemory .main-view-body{
+  background:var(--ios-grouped-bg,var(--bg));
+}
+:root[data-skin="cupertino"] body[data-panel="memory"] #memoryPanel{
+  padding:12px 16px calc(var(--mobile-app-rail-reserve,0px) + 18px);
+  background:var(--ios-grouped-bg,var(--bg));
+}
+:root[data-skin="cupertino"] body[data-panel="memory"] #memoryPanel .side-menu-item{
+  position:relative;
+  min-height:70px;
+  margin:0;
+  padding:11px 10px 11px 13px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  border:0;
+  border-radius:0;
+  background:var(--ios-secondary-bg,var(--surface));
+  color:var(--ios-label,var(--text));
+  box-shadow:none;
+  -webkit-tap-highlight-color:transparent;
+}
+:root[data-skin="cupertino"] body[data-panel="memory"] #memoryPanel .side-menu-item:first-child{
+  border-top-left-radius:18px;
+  border-top-right-radius:18px;
+  overflow:hidden;
+}
+:root[data-skin="cupertino"] body[data-panel="memory"] #memoryPanel .side-menu-item:last-child{
+  border-bottom-left-radius:18px;
+  border-bottom-right-radius:18px;
+  overflow:hidden;
+}
+:root[data-skin="cupertino"] body[data-panel="memory"] #memoryPanel .side-menu-item + .side-menu-item::before{
+  content:"";
+  position:absolute;
+  left:56px;
+  right:0;
+  top:0;
+  height:.5px;
+  background:var(--ios-separator,var(--border));
+  opacity:.72;
+}
+:root[data-skin="cupertino"] body[data-panel="memory"] #memoryPanel .side-menu-item:hover{
+  transform:none;
+  background:var(--ios-row-press,var(--hover-bg));
+}
+:root[data-skin="cupertino"] body[data-panel="memory"] #memoryPanel .side-menu-item.active{
+  background:color-mix(in srgb,var(--accent) 12%,var(--ios-secondary-bg));
+}
+:root[data-skin="cupertino"] .memory-row-icon{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  color:#fff;
+  background:linear-gradient(145deg,#64D2FF,#0A84FF 55%,#5E5CE6);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35);
+}
+:root[data-skin="cupertino"] .memory-row-copy{
+  min-width:0;
+  flex:1 1 auto;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  text-align:left;
+}
+:root[data-skin="cupertino"] .memory-row-title{
+  font-size:16px;
+  line-height:1.18;
+  font-weight:650;
+  letter-spacing:-.022em;
+  color:var(--ios-label,var(--text));
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+:root[data-skin="cupertino"] .memory-row-preview{
+  font-size:12.5px;
+  line-height:1.25;
+  color:var(--ios-secondary-label,var(--muted));
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+:root[data-skin="cupertino"] .memory-row-date{
+  flex:0 0 auto;
+  max-width:64px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:12px;
+  color:var(--ios-tertiary-label,var(--muted));
+}
+:root[data-skin="cupertino"] .memory-row-chevron{
+  display:inline-flex;
+  flex:0 0 auto;
+  color:var(--ios-tertiary-label,var(--muted));
+}
+:root[data-skin="cupertino"] body[data-panel="memory"] .memory-detail-content{
+  max-width:860px;
+  box-sizing:border-box;
+  padding:18px;
+  border:.5px solid var(--ios-separator,var(--border));
+  border-radius:18px;
+  background:var(--ios-secondary-bg,var(--surface));
+  box-shadow:0 1px 0 rgba(255,255,255,.10) inset,0 10px 30px rgba(0,0,0,.04);
+  color:var(--ios-label,var(--text));
+  overflow-wrap:anywhere;
+}
+:root[data-skin="cupertino"] body[data-panel="memory"] .memory-detail-mtime{
+  margin:0 0 12px;
+  font-size:12px;
+  color:var(--ios-secondary-label,var(--muted));
+}
+:root[data-skin="cupertino"] body[data-panel="memory"] .memory-content{
+  padding:0;
+  border:0;
+  background:transparent;
+  font-size:14px;
+  line-height:1.55;
+  color:var(--ios-label,var(--text));
+}
+:root[data-skin="cupertino"] body[data-panel="memory"] .memory-content > :first-child{margin-top:0;}
+:root[data-skin="cupertino"] body[data-panel="memory"] .memory-content > :last-child{margin-bottom:0;}
+:root[data-skin="cupertino"] body[data-panel="memory"] .memory-empty{
+  font-size:15px;
+  line-height:1.4;
+  color:var(--ios-secondary-label,var(--muted));
+}
+:root[data-skin="cupertino"] body[data-panel="memory"] #memoryDetailBody textarea#memEditContent{
+  min-height:48vh;
+  border-radius:18px;
+  border:.5px solid var(--ios-separator,var(--border));
+  background:var(--ios-secondary-bg,var(--surface));
+  color:var(--ios-label,var(--text));
+  font-size:14px;
+  line-height:1.5;
+}
+@media(max-width:640px){
+  :root[data-skin="cupertino"] body[data-panel="memory"] #memoryPanel{
+    padding:0 16px calc(var(--mobile-app-rail-reserve) + 20px);
+  }
+  :root[data-skin="cupertino"] body[data-panel="memory"] #mainMemory .main-view-header{
+    min-height:calc(94px + var(--app-titlebar-safe-top));
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:flex-end;
+    gap:8px;
+  }
+  :root[data-skin="cupertino"] body[data-panel="memory"] #mainMemory .main-view-title{
+    width:100%;
+    font-size:32px;
+    line-height:1.05;
+    white-space:normal;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    overflow:hidden;
+  }
+  :root[data-skin="cupertino"] body[data-panel="memory"] #mainMemory .main-view-actions{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  :root[data-skin="cupertino"] body[data-panel="memory"] #mainMemory .main-view-actions::-webkit-scrollbar{display:none;}
+  :root[data-skin="cupertino"] body[data-panel="memory"] #mainMemory .main-view-actions .panel-head-btn{
+    width:32px;
+    height:32px;
+    min-width:32px;
+    min-height:32px;
+    border-radius:999px;
+  }
+  :root[data-skin="cupertino"] body[data-panel="memory"] #mainMemory .main-view-body{
+    margin-bottom:calc(var(--mobile-app-rail-height) + 22px);
+    padding:8px 16px 28px;
+  }
+  :root[data-skin="cupertino"] body[data-panel="memory"] #mainMemory .main-view-empty{
+    padding:28px 26px var(--mobile-app-rail-reserve);
+  }
+}
