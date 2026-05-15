@@ -6098,3 +6098,36 @@ main.main.showing-logs > #mainLogs{display:flex;}
     padding:28px 26px var(--mobile-app-rail-reserve);
   }
 }
+
+/* Profiles mobile detail needs an explicit route back to the contextual list. */
+:root[data-skin="cupertino"] .main-view-back-btn{
+  display:none;
+  align-items:center;
+  gap:3px;
+  width:max-content;
+  max-width:100%;
+  border:0;
+  background:transparent;
+  color:var(--accent);
+  padding:0;
+  margin:0;
+  font:600 16px/1.2 var(--font-ui,inherit);
+  letter-spacing:-.02em;
+  -webkit-tap-highlight-color:transparent;
+}
+:root[data-skin="cupertino"] .main-view-back-btn svg{
+  width:22px;
+  height:22px;
+  margin-left:-7px;
+  flex:0 0 auto;
+}
+:root[data-skin="cupertino"] .main-view-back-btn:active{opacity:.55;}
+@media(max-width:640px){
+  :root[data-skin="cupertino"] body[data-panel="profiles"] #mainProfiles .main-view-back-btn{
+    display:inline-flex;
+    order:-2;
+  }
+  :root[data-skin="cupertino"] body[data-panel="profiles"] #mainProfiles .main-view-title{
+    order:-1;
+  }
+}

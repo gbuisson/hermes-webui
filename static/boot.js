@@ -228,6 +228,13 @@ function closeMobileSidebar(){
   if(sidebar)sidebar.classList.remove('mobile-open');
   if(overlay)overlay.classList.remove('visible');
 }
+function openMobileSectionList(){
+  // Non-chat mobile detail screens still need an explicit way back to their
+  // contextual list after row selection closes the sidebar.
+  const sidebar=document.querySelector('.sidebar');
+  const overlay=$('mobileOverlay');
+  if(sidebar){sidebar.classList.add('mobile-open');if(overlay)overlay.classList.add('visible');}
+}
 function syncMobileAppNav(panel){
   const active=panel||((typeof _currentPanel==='string'&&_currentPanel)||'chat');
   document.querySelectorAll('.mobile-app-tab[data-mobile-panel]').forEach(btn=>{
