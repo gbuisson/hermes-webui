@@ -4405,27 +4405,31 @@ async function loadProfilesPanel() {
     const activeName = (S.activeProfile && data.profiles.some(p => p.name === S.activeProfile))
       ? S.activeProfile
       : (data.active || 'default');
-    for (const p of data.profiles) {
+    for (let i = 0; i < data.profiles.length; i++) {
+      const p = data.profiles[i];
       const card = document.createElement('div');
       card.className = 'profile-card';
+      if (i === 0) card.classList.add('first');
+      if (i === data.profiles.length - 1) card.classList.add('last');
       card.dataset.name = p.name;
       const meta = [];
       if (p.model) meta.push(p.model.split('/').pop());
       if (p.provider) meta.push(p.provider);
       if (p.skill_count) meta.push(t('profile_skill_count', p.skill_count));
-      const gwDot = p.gateway_running
-        ? `<span class="profile-opt-badge running" title="${esc(t('profile_gateway_running'))}"></span>`
-        : `<span class="profile-opt-badge stopped" title="${esc(t('profile_gateway_stopped'))}"></span>`;
+      const gwBadge = p.gateway_running
+        ? `<span class="profile-card-badge running">${esc(t('profile_gateway_running'))}</span>`
+        : `<span class="profile-card-badge stopped">${esc(t('profile_gateway_stopped'))}</span>`;
       const isActive = p.name === activeName;
-      const activeBadge = isActive ? `<span style="color:var(--link);font-size:10px;font-weight:600;margin-left:6px">${esc(t('profile_active'))}</span>` : '';
-      const defaultBadge = p.is_default ? ` <span style="opacity:.5">${esc(t('profile_default_label'))}</span>` : '';
+      const activeBadge = isActive ? `<span class="profile-card-badge active">${esc(t('profile_active'))}</span>` : '';
+      const defaultBadge = p.is_default ? `<span class="profile-card-badge">${esc(t('profile_default_label'))}</span>` : '';
       card.innerHTML = `
-        <div class="profile-card-header">
-          <div style="min-width:0;flex:1">
-            <div class="profile-card-name${isActive ? ' is-active' : ''}">${gwDot}${esc(p.name)}${defaultBadge}${activeBadge}</div>
-            ${meta.length ? `<div class="profile-card-meta">${esc(meta.join(' \u00b7 '))}</div>` : `<div class="profile-card-meta">${esc(t('profile_no_configuration'))}</div>`}
-          </div>
-        </div>`;
+        <span class="profile-card-icon" aria-hidden="true">${li(isActive?'check-circle':'user',16)}</span>
+        <div class="profile-card-copy">
+          <div class="profile-card-name${isActive ? ' is-active' : ''}">${esc(p.name)}</div>
+          ${meta.length ? `<div class="profile-card-meta">${esc(meta.join(' \u00b7 '))}</div>` : `<div class="profile-card-meta">${esc(t('profile_no_configuration'))}</div>`}
+          <div class="profile-card-badges">${activeBadge}${defaultBadge}${gwBadge}</div>
+        </div>
+        <span class="profile-card-chevron" aria-hidden="true">${li('chevron-right',14)}</span>`;
       card.onclick = () => openProfileDetail(p.name, card);
       if (_currentProfileDetail && _currentProfileDetail.name === p.name) card.classList.add('active');
       panel.appendChild(card);
@@ -4467,8 +4471,8 @@ function _renderProfileDetail(p, activeName){
   if (typeof p.skill_count === 'number') rows.push(`<div class="detail-row"><div class="detail-row-label">Skills</div><div class="detail-row-value">${esc(t('profile_skill_count', p.skill_count))}</div></div>`);
   if (p.default_workspace) rows.push(`<div class="detail-row"><div class="detail-row-label">Default space</div><div class="detail-row-value"><code>${esc(p.default_workspace)}</code></div></div>`);
   body.innerHTML = `
-    <div class="main-view-content">
-      <div class="detail-card">
+    <div class="main-view-content profile-detail-content">
+      <div class="detail-card profile-summary-card">
         <div class="detail-card-title">Profile</div>
         ${rows.join('')}
       </div>
@@ -4503,6 +4507,8 @@ function openProfileDetail(name, el){
   if (!_profilesCache || !_profilesCache.profiles) return;
   const p = _profilesCache.profiles.find(x => x.name === name);
   if (!p) return;
+  // On phone, selecting a profile should reveal the detail pane immediately.
+  if (typeof closeMobileSidebar === 'function') closeMobileSidebar();
   document.querySelectorAll('.profile-card').forEach(e => e.classList.remove('active'));
   const target = el || document.querySelector(`.profile-card[data-name="${CSS.escape(name)}"]`);
   if (target) target.classList.add('active');
@@ -4751,8 +4757,8 @@ function _renderProfileForm(){
   if (!title || !body) return;
   title.textContent = t('new_profile');
   body.innerHTML = `
-    <div class="main-view-content">
-      <form class="detail-form" onsubmit="event.preventDefault(); saveProfileForm();">
+    <div class="main-view-content profile-form-content">
+      <form class="detail-form profile-detail-form" onsubmit="event.preventDefault(); saveProfileForm();">
         <div class="detail-form-row">
           <label for="profileFormName">${esc(t('profile_name_label') || 'Name')}</label>
           <input type="text" id="profileFormName" placeholder="${esc(t('profile_name_placeholder') || 'lowercase, a-z 0-9 hyphens')}" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" required>
