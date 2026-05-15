@@ -5254,24 +5254,73 @@ main.main.showing-logs > #mainLogs{display:flex;}
 }
 :root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content{
   max-width:860px;
+  width:100%;
+  box-sizing:border-box;
+  color:var(--ios-label,var(--text));
+  background:var(--ios-secondary-bg,var(--surface));
+  border:.5px solid var(--ios-separator,var(--border));
+  border-radius:18px;
+  padding:18px 18px 20px;
+  box-shadow:0 1px 0 rgba(255,255,255,.10) inset,0 10px 30px rgba(0,0,0,.04);
+  overflow:hidden;
+  overflow-wrap:anywhere;
+}
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content > :first-child{margin-top:0;}
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content > :last-child{margin-bottom:0;}
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content h1,
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content h2,
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content h3,
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content h4{
+  margin:18px 0 8px;
+  color:var(--ios-label,var(--text));
+  line-height:1.18;
+  letter-spacing:-.026em;
+}
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content h1{font-size:24px;font-weight:780;}
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content h2{font-size:20px;font-weight:740;}
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content h3{font-size:17px;font-weight:700;}
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content p,
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content li{
+  font-size:14px;
+  line-height:1.5;
   color:var(--ios-label,var(--text));
 }
-:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content > :is(h1,h2,h3,h4,p,ul,ol,pre,blockquote,table),
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content p{margin:0 0 10px;}
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content ul,
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content ol{
+  margin:8px 0 12px;
+  padding-left:22px;
+}
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content pre{
+  max-width:100%;
+  box-sizing:border-box;
+  margin:12px 0;
+  padding:12px 13px;
+  overflow:auto;
+  border-radius:14px;
+  background:var(--ios-fill,var(--code-bg));
+  border:.5px solid var(--ios-separator,var(--border));
+}
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content code{
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content pre code{
+  white-space:pre;
+  word-break:normal;
+  overflow-wrap:normal;
+}
+:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content table{
+  display:block;
+  max-width:100%;
+  overflow:auto;
+}
 :root[data-skin="cupertino"] body[data-panel="skills"] .skill-frontmatter,
 :root[data-skin="cupertino"] body[data-panel="skills"] .skill-linked-files{
   background:var(--ios-secondary-bg,var(--surface));
   border:.5px solid var(--ios-separator,var(--border));
   border-radius:18px;
   box-shadow:0 1px 0 rgba(255,255,255,.10) inset,0 10px 30px rgba(0,0,0,.04);
-}
-:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content > :is(h1,h2,h3,h4,p,ul,ol,blockquote,table){
-  margin:0 0 10px;
-  padding:14px 16px;
-}
-:root[data-skin="cupertino"] body[data-panel="skills"] .skill-detail-content > pre{
-  margin:0 0 10px;
-  padding:14px 16px;
-  overflow:auto;
 }
 :root[data-skin="cupertino"] body[data-panel="skills"] .skill-frontmatter{
   margin:0 0 12px;
