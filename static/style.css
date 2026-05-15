@@ -6133,25 +6133,127 @@ main.main.showing-logs > #mainLogs{display:flex;}
 }
 
 /* Settings hub consolidation: resource/admin panels live under Settings, not the global rail. */
-:root[data-skin="cupertino"] .settings-menu-section-label{
-  margin:14px 10px 5px;
+/* Settings hub iOS grouped-list polish: keep the existing panes, make the hub feel like UIKit Settings. */
+:root[data-skin="cupertino"] #panelSettings{
+  background:var(--ios-grouped-bg,var(--bg));
+}
+:root[data-skin="cupertino"] #panelSettings .panel-head{
+  min-height:52px;
+  padding:14px 16px 8px;
+  border-bottom:0;
+  background:var(--ios-grouped-bg,var(--bg));
+  color:var(--ios-label,var(--text));
+  font-family:var(--font-display);
+  font-size:22px;
+  font-weight:780;
+  letter-spacing:-.04em;
+  text-transform:none;
+}
+:root[data-skin="cupertino"] #settingsMenu.settings-menu-ios{
+  gap:0;
+  padding:4px 12px 18px;
+  background:var(--ios-grouped-bg,var(--bg));
+}
+:root[data-skin="cupertino"] #settingsMenu .settings-menu-section-label{
+  flex-shrink:0;
+  margin:18px 8px 7px;
   color:var(--ios-secondary-label,var(--muted));
   font-size:11px;
-  font-weight:750;
-  letter-spacing:.055em;
+  font-weight:700;
+  letter-spacing:.045em;
   line-height:1.2;
   text-transform:uppercase;
 }
-:root[data-skin="cupertino"] #settingsMenu .settings-linked-panel{
-  position:relative;
+:root[data-skin="cupertino"] #settingsMenu .settings-menu-section-label:first-child{
+  margin-top:4px;
 }
-:root[data-skin="cupertino"] #settingsMenu .settings-linked-panel::after{
+:root[data-skin="cupertino"] #settingsMenu .settings-menu-group{
+  flex-shrink:0;
+  overflow:hidden;
+  border:.5px solid color-mix(in srgb,var(--ios-separator) 72%,transparent);
+  border-radius:16px;
+  background:color-mix(in srgb,var(--ios-secondary-bg) 93%,transparent);
+  box-shadow:0 1px 0 rgba(255,255,255,.10) inset;
+}
+:root[data-skin="cupertino"] #settingsMenu .side-menu-item{
+  position:relative;
+  min-height:47px;
+  gap:11px;
+  padding:8px 36px 8px 12px;
+  border-radius:0;
+  border:0;
+  background:transparent;
+  color:var(--ios-label,var(--text));
+  font-size:15px;
+  font-weight:500;
+  letter-spacing:-.01em;
+}
+:root[data-skin="cupertino"] #settingsMenu .side-menu-item + .side-menu-item::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:52px;
+  right:0;
+  height:.5px;
+  background:color-mix(in srgb,var(--ios-separator) 76%,transparent);
+}
+:root[data-skin="cupertino"] #settingsMenu .side-menu-item:hover,
+:root[data-skin="cupertino"] #settingsMenu .side-menu-item:active{
+  background:var(--ios-row-press);
+}
+:root[data-skin="cupertino"] #settingsMenu .side-menu-item.active{
+  background:color-mix(in srgb,var(--accent) 12%,transparent);
+  color:var(--ios-label,var(--text));
+}
+:root[data-skin="cupertino"] #settingsMenu .side-menu-item.active::before{
+  opacity:.45;
+}
+:root[data-skin="cupertino"] #settingsMenu .side-menu-item > svg{
+  box-sizing:border-box;
+  width:29px;
+  height:29px;
+  flex:0 0 29px;
+  padding:6px;
+  border-radius:8px;
+  color:#fff;
+  stroke-width:1.8;
+  filter:drop-shadow(0 .5px 0 rgba(0,0,0,.18));
+}
+:root[data-skin="cupertino"] #settingsMenu .side-menu-item > span{
+  min-width:0;
+  flex:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+:root[data-skin="cupertino"] #settingsMenu .side-menu-item::after{
   content:"›";
-  margin-left:auto;
+  position:absolute;
+  right:13px;
+  top:50%;
+  transform:translateY(-53%);
   color:var(--ios-tertiary-label,var(--muted));
-  font-size:19px;
+  font-size:22px;
+  font-weight:500;
   line-height:1;
 }
+:root[data-skin="cupertino"] #settingsMenu .side-menu-item.active::after{
+  color:color-mix(in srgb,var(--accent) 68%,var(--ios-tertiary-label));
+}
+:root[data-skin="cupertino"] #settingsMenu .settings-menu-group-core .side-menu-item:nth-child(1)>svg{background:linear-gradient(145deg,#34C759,#30D158);}
+:root[data-skin="cupertino"] #settingsMenu .settings-menu-group-core .side-menu-item:nth-child(2)>svg{background:linear-gradient(145deg,#FF9500,#FF9F0A);}
+:root[data-skin="cupertino"] #settingsMenu .settings-menu-group-core .side-menu-item:nth-child(3)>svg{background:linear-gradient(145deg,#5856D6,#5E5CE6);}
+:root[data-skin="cupertino"] #settingsMenu .settings-menu-group-core .side-menu-item:nth-child(4)>svg{background:linear-gradient(145deg,#0A84FF,#64D2FF);}
+:root[data-skin="cupertino"] #settingsMenu .settings-menu-group-core .side-menu-item:nth-child(5)>svg{background:linear-gradient(145deg,#BF5AF2,#AF52DE);}
+:root[data-skin="cupertino"] #settingsMenu .settings-menu-group-core .side-menu-item:nth-child(6)>svg{background:linear-gradient(145deg,#8E8E93,#636366);}
+:root[data-skin="cupertino"] #settingsMenu .settings-linked-panel[data-settings-link-panel="profiles"]>svg{background:linear-gradient(145deg,#0A84FF,#64D2FF);}
+:root[data-skin="cupertino"] #settingsMenu .settings-linked-panel[data-settings-link-panel="workspaces"]>svg{background:linear-gradient(145deg,#FF9F0A,#FFD60A);}
+:root[data-skin="cupertino"] #settingsMenu .settings-linked-panel[data-settings-link-panel="skills"]>svg{background:linear-gradient(145deg,#32D74B,#30B0C7);}
+:root[data-skin="cupertino"] #settingsMenu .settings-linked-panel[data-settings-link-panel="memory"]>svg{background:linear-gradient(145deg,#AF52DE,#FF2D55);}
+:root[data-skin="cupertino"] #settingsMenu .settings-linked-panel[data-settings-link-panel="tasks"]>svg{background:linear-gradient(145deg,#FF9F0A,#FF453A);}
+:root[data-skin="cupertino"] #settingsMenu .settings-linked-panel[data-settings-link-panel="todos"]>svg{background:linear-gradient(145deg,#30D158,#34C759);}
+:root[data-skin="cupertino"] #settingsMenu .settings-linked-panel[data-settings-link-panel="insights"]>svg{background:linear-gradient(145deg,#5E5CE6,#64D2FF);}
+:root[data-skin="cupertino"] #settingsMenu .settings-linked-panel[data-settings-link-panel="logs"]>svg{background:linear-gradient(145deg,#8E8E93,#636366);}
 :root[data-skin="cupertino"] .rail .nav-tab[data-panel="tasks"],
 :root[data-skin="cupertino"] .rail .nav-tab[data-panel="skills"],
 :root[data-skin="cupertino"] .rail .nav-tab[data-panel="memory"],
@@ -6184,7 +6286,8 @@ main.main.showing-logs > #mainLogs{display:flex;}
     padding-left:max(18px,env(safe-area-inset-left));
     padding-right:max(18px,env(safe-area-inset-right));
   }
-  :root[data-skin="cupertino"] #settingsMenu{
-    padding-bottom:calc(var(--mobile-app-rail-reserve,64px) + 18px);
+  :root[data-skin="cupertino"] #settingsMenu.settings-menu-ios{
+    padding-bottom:calc(var(--mobile-app-rail-reserve,64px) + 52px);
+    scroll-padding-bottom:calc(var(--mobile-app-rail-reserve,64px) + 52px);
   }
 }

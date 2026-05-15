@@ -268,67 +268,78 @@
       <div class="panel-head">
         <span data-i18n="tab_settings">Settings</span>
       </div>
-      <div class="side-menu" id="settingsMenu">
-        <button type="button" class="side-menu-item active" data-settings-section="conversation" onclick="switchSettingsSection('conversation')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <span>Conversation</span>
-        </button>
-        <button type="button" class="side-menu-item" data-settings-section="appearance" onclick="switchSettingsSection('appearance')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-          <span>Appearance</span>
-        </button>
-        <button type="button" class="side-menu-item" data-settings-section="preferences" onclick="switchSettingsSection('preferences')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-          <span>Preferences</span>
-        </button>
-        <button type="button" class="side-menu-item" data-settings-section="providers" onclick="switchSettingsSection('providers')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-          <span data-i18n="providers_tab_title">Providers</span>
-        </button>
-        <button type="button" class="side-menu-item" data-settings-section="plugins" onclick="switchSettingsSection('plugins')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4.3 2.1 7L12 16.2 5.4 20.3l2.1-7L2 9h7z"/></svg>
-          <span>Plugins</span>
-        </button>
-        <button type="button" class="side-menu-item" data-settings-section="system" onclick="switchSettingsSection('system')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="8" rx="2"/><rect x="2" y="13" width="20" height="8" rx="2"/><line x1="6" y1="7" x2="6.01" y2="7"/><line x1="6" y1="17" x2="6.01" y2="17"/></svg>
-          <span>System</span>
-        </button>
+      <div class="side-menu settings-menu-ios" id="settingsMenu">
+        <div class="settings-menu-section-label">Core</div>
+        <div class="settings-menu-group settings-menu-group-core">
+          <button type="button" class="side-menu-item active" data-settings-section="conversation" onclick="switchSettingsSection('conversation')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>Conversation</span>
+          </button>
+          <button type="button" class="side-menu-item" data-settings-section="appearance" onclick="switchSettingsSection('appearance')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <span>Appearance</span>
+          </button>
+          <button type="button" class="side-menu-item" data-settings-section="preferences" onclick="switchSettingsSection('preferences')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+            <span>Preferences</span>
+          </button>
+          <button type="button" class="side-menu-item" data-settings-section="providers" onclick="switchSettingsSection('providers')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+            <span data-i18n="providers_tab_title">Providers</span>
+          </button>
+          <button type="button" class="side-menu-item" data-settings-section="plugins" onclick="switchSettingsSection('plugins')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4.3 2.1 7L12 16.2 5.4 20.3l2.1-7L2 9h7z"/></svg>
+            <span>Plugins</span>
+          </button>
+          <button type="button" class="side-menu-item" data-settings-section="system" onclick="switchSettingsSection('system')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="8" rx="2"/><rect x="2" y="13" width="20" height="8" rx="2"/><line x1="6" y1="7" x2="6.01" y2="7"/><line x1="6" y1="17" x2="6.01" y2="17"/></svg>
+            <span>System</span>
+          </button>
+        </div>
         <div class="settings-menu-section-label">Agent</div>
-        <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="profiles" onclick="openSettingsLinkedPanel('profiles')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span data-i18n="tab_profiles">Profiles</span>
-        </button>
-        <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="workspaces" onclick="openSettingsLinkedPanel('workspaces')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-          <span data-i18n="tab_workspaces">Spaces</span>
-        </button>
+        <div class="settings-menu-group">
+          <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="profiles" onclick="openSettingsLinkedPanel('profiles')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span data-i18n="tab_profiles">Profiles</span>
+          </button>
+          <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="workspaces" onclick="openSettingsLinkedPanel('workspaces')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            <span data-i18n="tab_workspaces">Spaces</span>
+          </button>
+        </div>
         <div class="settings-menu-section-label">Knowledge</div>
-        <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="skills" onclick="openSettingsLinkedPanel('skills')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
-          <span data-i18n="tab_skills">Skills</span>
-        </button>
-        <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="memory" onclick="openSettingsLinkedPanel('memory')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-5 0 2.5 2.5 0 0 1-3-3 3 3 0 0 1 1-5.7 2.5 2.5 0 0 1 1.5-4.6A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3-3 3 3 0 0 0-1-5.7 2.5 2.5 0 0 0-1.5-4.6A2.5 2.5 0 0 0 14.5 2Z"/></svg>
-          <span data-i18n="tab_memory">Memory</span>
-        </button>
+        <div class="settings-menu-group">
+          <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="skills" onclick="openSettingsLinkedPanel('skills')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+            <span data-i18n="tab_skills">Skills</span>
+          </button>
+          <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="memory" onclick="openSettingsLinkedPanel('memory')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-5 0 2.5 2.5 0 0 1-3-3 3 3 0 0 1 1-5.7 2.5 2.5 0 0 1 1.5-4.6A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3-3 3 3 0 0 0-1-5.7 2.5 2.5 0 0 0-1.5-4.6A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+            <span data-i18n="tab_memory">Memory</span>
+          </button>
+        </div>
         <div class="settings-menu-section-label">Work</div>
-        <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="tasks" onclick="openSettingsLinkedPanel('tasks')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          <span data-i18n="tab_tasks">Jobs</span>
-        </button>
-        <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="todos" onclick="openSettingsLinkedPanel('todos')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="6" height="6" rx="1"/><path d="m3 17 2 2 4-4M13 6h8M13 12h8M13 18h8"/></svg>
-          <span data-i18n="tab_todos">Todos</span>
-        </button>
+        <div class="settings-menu-group">
+          <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="tasks" onclick="openSettingsLinkedPanel('tasks')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <span data-i18n="tab_tasks">Jobs</span>
+          </button>
+          <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="todos" onclick="openSettingsLinkedPanel('todos')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="6" height="6" rx="1"/><path d="m3 17 2 2 4-4M13 6h8M13 12h8M13 18h8"/></svg>
+            <span data-i18n="tab_todos">Todos</span>
+          </button>
+        </div>
         <div class="settings-menu-section-label">Diagnostics</div>
-        <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="insights" onclick="openSettingsLinkedPanel('insights')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-          <span data-i18n="tab_insights">Insights</span>
-        </button>
-        <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="logs" onclick="openSettingsLinkedPanel('logs')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2"/></svg>
-          <span data-i18n="tab_logs">Logs</span>
-        </button>
+        <div class="settings-menu-group">
+          <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="insights" onclick="openSettingsLinkedPanel('insights')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+            <span data-i18n="tab_insights">Insights</span>
+          </button>
+          <button type="button" class="side-menu-item settings-linked-panel" data-settings-link-panel="logs" onclick="openSettingsLinkedPanel('logs')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2"/></svg>
+            <span data-i18n="tab_logs">Logs</span>
+          </button>
+        </div>
       </div>
     </div>
   <div class="resize-handle" id="sidebarResize"></div>
