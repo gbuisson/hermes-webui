@@ -4983,7 +4983,23 @@ main.main.showing-logs > #mainLogs{display:flex;}
   :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-stats,
   :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-bulk-bar,
   :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-new-task-row{grid-column:1 / -1;}
-  :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-filter-stack .sidebar-search,
+  :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-filter-stack .sidebar-search{
+    min-height:31px;
+    height:31px;
+    padding:0;
+    overflow:hidden;
+  }
+  :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-filter-stack .sidebar-search input{
+    height:31px;
+    border:0;
+    border-radius:12px;
+    background:transparent;
+    box-shadow:none;
+    padding:0 10px 0 30px;
+    font-size:13px;
+  }
+  :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-filter-stack .sidebar-search input:focus{box-shadow:none;background:transparent;}
+  :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-filter-stack .sidebar-search-icon{left:10px;width:14px;height:14px;}
   :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-filter-stack select,
   :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-check,
   :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-new-task-row input{min-height:31px;height:31px;}
@@ -5017,4 +5033,15 @@ main.main.showing-logs > #mainLogs{display:flex;}
   :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-new-task-row{gap:5px;}
   :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-new-task-row input{font-size:12px;padding:5px 9px;}
   :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-summary{padding:4px 16px 6px;font-size:11.5px;}
+  :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-list-item{min-height:82px;padding-top:11px;padding-bottom:11px;}
+  :root[data-skin="cupertino"] body[data-panel="kanban"] .kanban-list-title{
+    display:block;
+    min-height:19px;
+    max-width:100%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:15px;
+    line-height:19px;
+  }
 }
