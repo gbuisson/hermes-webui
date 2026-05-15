@@ -6131,3 +6131,60 @@ main.main.showing-logs > #mainLogs{display:flex;}
     order:-1;
   }
 }
+
+/* Settings hub consolidation: resource/admin panels live under Settings, not the global rail. */
+:root[data-skin="cupertino"] .settings-menu-section-label{
+  margin:14px 10px 5px;
+  color:var(--ios-secondary-label,var(--muted));
+  font-size:11px;
+  font-weight:750;
+  letter-spacing:.055em;
+  line-height:1.2;
+  text-transform:uppercase;
+}
+:root[data-skin="cupertino"] #settingsMenu .settings-linked-panel{
+  position:relative;
+}
+:root[data-skin="cupertino"] #settingsMenu .settings-linked-panel::after{
+  content:"›";
+  margin-left:auto;
+  color:var(--ios-tertiary-label,var(--muted));
+  font-size:19px;
+  line-height:1;
+}
+:root[data-skin="cupertino"] .rail .nav-tab[data-panel="tasks"],
+:root[data-skin="cupertino"] .rail .nav-tab[data-panel="skills"],
+:root[data-skin="cupertino"] .rail .nav-tab[data-panel="memory"],
+:root[data-skin="cupertino"] .rail .nav-tab[data-panel="workspaces"],
+:root[data-skin="cupertino"] .rail .nav-tab[data-panel="profiles"],
+:root[data-skin="cupertino"] .rail .nav-tab[data-panel="todos"],
+:root[data-skin="cupertino"] .rail .nav-tab[data-panel="insights"],
+:root[data-skin="cupertino"] .rail .nav-tab[data-panel="logs"],
+:root[data-skin="cupertino"] .sidebar-nav .nav-tab[data-panel="tasks"],
+:root[data-skin="cupertino"] .sidebar-nav .nav-tab[data-panel="skills"],
+:root[data-skin="cupertino"] .sidebar-nav .nav-tab[data-panel="memory"],
+:root[data-skin="cupertino"] .sidebar-nav .nav-tab[data-panel="workspaces"],
+:root[data-skin="cupertino"] .sidebar-nav .nav-tab[data-panel="profiles"],
+:root[data-skin="cupertino"] .sidebar-nav .nav-tab[data-panel="todos"],
+:root[data-skin="cupertino"] .sidebar-nav .nav-tab[data-panel="insights"],
+:root[data-skin="cupertino"] .sidebar-nav .nav-tab[data-panel="logs"],
+:root[data-skin="cupertino"] .mobile-app-tab[data-mobile-panel="tasks"],
+:root[data-skin="cupertino"] .mobile-app-tab[data-mobile-panel="skills"],
+:root[data-skin="cupertino"] .mobile-app-tab[data-mobile-panel="memory"],
+:root[data-skin="cupertino"] .mobile-app-tab[data-mobile-panel="workspaces"],
+:root[data-skin="cupertino"] .mobile-app-tab[data-mobile-panel="profiles"],
+:root[data-skin="cupertino"] .mobile-app-tab[data-mobile-panel="todos"],
+:root[data-skin="cupertino"] .mobile-app-tab[data-mobile-panel="insights"],
+:root[data-skin="cupertino"] .mobile-app-tab[data-mobile-panel="logs"]{
+  display:none!important;
+}
+@media(max-width:640px){
+  :root[data-skin="cupertino"] .mobile-app-tabbar{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    padding-left:max(18px,env(safe-area-inset-left));
+    padding-right:max(18px,env(safe-area-inset-right));
+  }
+  :root[data-skin="cupertino"] #settingsMenu{
+    padding-bottom:calc(var(--mobile-app-rail-reserve,64px) + 18px);
+  }
+}

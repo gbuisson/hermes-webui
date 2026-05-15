@@ -220,8 +220,11 @@ async function switchPanel(name, opts = {}) {
   if (document.documentElement) document.documentElement.dataset.panel = nextPanel;
   if (typeof syncMobileAppNav === 'function') syncMobileAppNav(nextPanel);
   if (typeof closeMobileAppMenu === 'function' && !opts.keepMobileAppMenu) closeMobileAppMenu();
-  // Update nav tabs (rail + mobile sidebar-nav share data-panel)
-  document.querySelectorAll('[data-panel]').forEach(t => t.classList.toggle('active', t.dataset.panel === nextPanel));
+  // Update nav tabs (rail + mobile sidebar-nav share data-panel). Admin/resource
+  // panels now live under Settings in the global navigation, so keep the
+  // Settings tab highlighted when one of those child panels is open.
+  const navPanel = _settingsChildPanels.has(nextPanel) ? 'settings' : nextPanel;
+  document.querySelectorAll('[data-panel]').forEach(t => t.classList.toggle('active', t.dataset.panel === navPanel));
   // Refresh aria-expanded on the newly-active rail button to mirror sidebar state.
   if (typeof _syncSidebarAria === 'function') _syncSidebarAria();
   // Update panel views
@@ -4389,6 +4392,11 @@ async function switchToWorkspace(path,name){
 
 // ── Profile panel + dropdown ──
 let _profilesCache = null;
+const _settingsChildPanels = new Set(['tasks','skills','memory','workspaces','profiles','todos','insights','logs']);
+async function openSettingsLinkedPanel(panel){
+  if (!panel) return false;
+  return switchPanel(panel, { fromSettingsHub: true });
+}
 
 async function loadProfilesPanel() {
   const panel = $('profilesPanel');

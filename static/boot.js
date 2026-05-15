@@ -236,7 +236,9 @@ function openMobileSectionList(){
   if(sidebar){sidebar.classList.add('mobile-open');if(overlay)overlay.classList.add('visible');}
 }
 function syncMobileAppNav(panel){
-  const active=panel||((typeof _currentPanel==='string'&&_currentPanel)||'chat');
+  const raw=panel||((typeof _currentPanel==='string'&&_currentPanel)||'chat');
+  const settingsChildren=new Set(['tasks','skills','memory','workspaces','profiles','todos','insights','logs']);
+  const active=settingsChildren.has(raw)?'settings':raw;
   document.querySelectorAll('.mobile-app-tab[data-mobile-panel]').forEach(btn=>{
     btn.classList.toggle('active',btn.dataset.mobilePanel===active);
   });
