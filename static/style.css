@@ -4413,6 +4413,21 @@ main.main.showing-logs > #mainLogs{display:flex;}
   .sidebar.mobile-open .kanban-list,
   .sidebar.mobile-open .skills-list,
   .sidebar.mobile-open .side-menu{padding-bottom:8px;}
+  /* Chat session drawer owns the screen while open: hide the floating chat pill
+     and let the drawer start at the real top, with its own safe-area padding. */
+  :root[data-skin="cupertino"] body[data-panel="chat"]:has(.sidebar.mobile-open) .app-titlebar{
+    opacity:0;
+    transform:translateY(-10px);
+    pointer-events:none;
+  }
+  :root[data-skin="cupertino"] body[data-panel="chat"] .sidebar.mobile-open{
+    top:0;
+  }
+  :root[data-skin="cupertino"] body[data-panel="chat"] .sidebar.mobile-open .panel-head-chat{
+    min-height:calc(72px + var(--app-titlebar-safe-top));
+    padding-top:calc(var(--app-titlebar-safe-top) + 16px);
+    box-sizing:border-box;
+  }
   :root[data-skin="cupertino"] body[data-panel="chat"] .composer-wrap,
   body[data-panel="chat"] .composer-wrap{padding-bottom:var(--mobile-app-rail-reserve)!important;}
   body:not([data-panel="chat"]) .main-view-body,
