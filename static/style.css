@@ -5076,7 +5076,7 @@ main.main.showing-logs > #mainLogs{display:flex;}
   font-size:15px;
   line-height:20px;
   letter-spacing:-.018em;
-  padding:7px 12px 7px 34px;
+  padding:7px 12px;
 }
 :root[data-skin="cupertino"] body[data-panel="skills"] .skills-search.sidebar-search input:focus{
   background:transparent;
@@ -5088,10 +5088,7 @@ main.main.showing-logs > #mainLogs{display:flex;}
   box-shadow:0 0 0 1px rgba(10,132,255,.34),0 0 0 4px rgba(10,132,255,.10);
 }
 :root[data-skin="cupertino"] body[data-panel="skills"] .skills-search.sidebar-search .sidebar-search-icon{
-  left:27px;
-  width:15px;height:15px;
-  color:var(--ios-secondary-label,var(--muted));
-  z-index:2;
+  display:none;
 }
 :root[data-skin="cupertino"] body[data-panel="skills"] .skills-list{
   padding:0 16px 22px;
