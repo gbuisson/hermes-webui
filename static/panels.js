@@ -3952,19 +3952,27 @@ function renderWorkspacesPanel(workspaces){
     const w=workspaces[i];
     const row=document.createElement('div');
     row.className='ws-row';
+    if (i === 0) row.classList.add('first');
+    if (i === workspaces.length - 1) row.classList.add('last');
     row.dataset.path = w.path;
     row.draggable=true;
     const isActive = w.path === activePath;
-    const activeBadge = isActive ? `<span class="detail-badge active" style="margin-left:6px;font-size:9px;padding:1px 6px">${esc(t('profile_active'))}</span>` : '';
+    const activeBadge = isActive ? `<span class="ws-row-badge active">${esc(t('profile_active'))}</span>` : '';
+    const defaultBadge = w.is_default ? `<span class="ws-row-badge">${esc(t('profile_default_label'))}</span>` : '';
+    const label = w.name || getWorkspaceFriendlyName(w.path) || w.path;
     row.innerHTML=`
       <span class="ws-drag-handle" title="${esc(t('workspace_drag_hint'))}">${li('grip-vertical',12)}</span>
+      <span class="ws-row-icon" aria-hidden="true">${li(isActive?'check-circle':'folder',16)}</span>
       <div class="ws-row-info">
-        <div class="ws-row-name">${esc(w.name)}${activeBadge}</div>
+        <div class="ws-row-name">${esc(label)}</div>
         <div class="ws-row-path">${esc(w.path)}</div>
-      </div>`;
-    // Click on info area only — not on drag handle
-    const info=row.querySelector('.ws-row-info');
-    if(info) info.onclick = (e) => { e.stopPropagation(); openWorkspaceDetail(w.path, row); };
+        ${(activeBadge||defaultBadge)?`<div class="ws-row-badges">${activeBadge}${defaultBadge}</div>`:''}
+      </div>
+      <span class="ws-row-chevron" aria-hidden="true">${li('chevron-right',14)}</span>`;
+    // Whole row is a navigation target on touch. Drag still starts from the grip.
+    row.onclick = () => openWorkspaceDetail(w.path, row);
+    const grip=row.querySelector('.ws-drag-handle');
+    if(grip) grip.onclick = (e) => e.stopPropagation();
     if (_currentWorkspaceDetail && _currentWorkspaceDetail.path === w.path) row.classList.add('active');
 
     // ── Drag-and-drop reorder ──
@@ -4021,7 +4029,7 @@ function renderWorkspacesPanel(workspaces){
     panel.appendChild(row);
   }
   const hint=document.createElement('div');
-  hint.style.cssText='font-size:11px;color:var(--muted);padding:8px 0';
+  hint.className='workspace-list-hint';
   hint.textContent=t('workspace_paths_validated_hint');
   panel.appendChild(hint);
   // Re-render detail if we have one cached and we're not in a form
@@ -4047,8 +4055,8 @@ function _renderWorkspaceDetail(ws){
     : `<span class="detail-badge">Inactive</span>`;
   const defaultBadge = isDefault ? ` <span class="detail-badge">${esc(t('profile_default_label'))}</span>` : '';
   body.innerHTML = `
-    <div class="main-view-content">
-      <div class="detail-card">
+    <div class="main-view-content workspace-detail-content">
+      <div class="detail-card workspace-summary-card">
         <div class="detail-card-title">Space</div>
         <div class="detail-row"><div class="detail-row-label">Name</div><div class="detail-row-value">${esc(ws.name || '')}</div></div>
         <div class="detail-row"><div class="detail-row-label">Path</div><div class="detail-row-value"><code>${esc(ws.path)}</code></div></div>
@@ -4095,6 +4103,8 @@ function openWorkspaceDetail(path, el){
   if (!_workspaceList) return;
   const ws = _workspaceList.find(w => w.path === path);
   if (!ws) return;
+  // On phone, selecting a space should reveal the detail pane immediately.
+  if (typeof closeMobileSidebar === 'function') closeMobileSidebar();
   document.querySelectorAll('.ws-row').forEach(e => e.classList.remove('active'));
   const target = el || document.querySelector(`.ws-row[data-path="${CSS.escape(path)}"]`);
   if (target) target.classList.add('active');
@@ -4160,8 +4170,8 @@ function _renderWorkspaceForm({ name, path, isEdit }){
     ? `<div class="detail-form-hint">${esc(t('workspace_path_readonly') || 'Path cannot be changed. Rename only.')}</div>`
     : `<div class="detail-form-hint">${esc(t('workspace_paths_validated_hint'))}</div>`;
   body.innerHTML = `
-    <div class="main-view-content">
-      <form class="detail-form" onsubmit="event.preventDefault(); saveWorkspaceForm();">
+    <div class="main-view-content workspace-form-content">
+      <form class="detail-form workspace-detail-form" onsubmit="event.preventDefault(); saveWorkspaceForm();">
         <div class="detail-form-row">
           <label for="workspaceFormName">${esc(t('workspace_name_label') || 'Name')}</label>
           <input type="text" id="workspaceFormName" value="${esc(name || '')}" placeholder="${esc(t('workspace_name_placeholder') || 'Optional friendly name')}" autocomplete="off">
