@@ -3196,7 +3196,9 @@ function renderSkills(skills) {
     const hdr = document.createElement('div');
     hdr.className = 'skills-cat-header';
     hdr.dataset.cat = cat;
-    hdr.innerHTML = `<span class="cat-chevron" style="display:inline-flex;transition:transform .15s;${collapsed ? '' : 'transform:rotate(90deg)'}">${li('chevron-right',12)}</span> ${esc(cat)} <span style="opacity:.5">(${items.length})</span>`;
+    hdr.innerHTML = `
+      <span class="skills-cat-label">${esc(cat)}</span>
+      <span class="skills-cat-meta"><span class="skills-cat-count">${items.length}</span><span class="cat-chevron" style="display:inline-flex;transition:transform .15s;${collapsed ? '' : 'transform:rotate(90deg)'}">${li('chevron-right',12)}</span></span>`;
     hdr.onclick = () => _toggleCatCollapse(cat);
     sec.appendChild(hdr);
     for (const skill of items.sort((a,b) => a.name.localeCompare(b.name))) {
