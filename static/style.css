@@ -6302,11 +6302,29 @@ main.main.showing-logs > #mainLogs{display:flex;}
   display:none!important;
 }
 @media(max-width:640px){
+  :root[data-skin="cupertino"]{
+    /* Three-icon iOS rail: include the real home-indicator safe area so the
+       background reaches the physical bottom edge instead of looking detached. */
+    --mobile-app-rail-safe:var(--app-safe-bottom);
+    --mobile-app-rail-height:calc(42px + var(--mobile-app-rail-safe));
+    --mobile-app-rail-reserve:calc(var(--mobile-app-rail-height) + 2px);
+  }
   :root[data-skin="cupertino"] .mobile-app-tabbar{
     grid-template-columns:repeat(3,minmax(0,1fr));
-    padding-left:max(18px,env(safe-area-inset-left));
-    padding-right:max(18px,env(safe-area-inset-right));
+    height:var(--mobile-app-rail-height);
+    padding:3px max(18px,env(safe-area-inset-left)) var(--mobile-app-rail-safe) max(18px,env(safe-area-inset-right));
+    align-items:stretch;
   }
+  :root[data-skin="cupertino"] .mobile-app-tab{
+    height:100%;
+    min-height:38px;
+    border-radius:14px;
+    align-self:stretch;
+  }
+  :root[data-skin="cupertino"] .mobile-app-tab svg{width:20px;height:20px;}
+  :root[data-skin="cupertino"] .mobile-app-tab[data-mobile-panel="kanban"]{order:1;}
+  :root[data-skin="cupertino"] .mobile-app-tab[data-mobile-panel="chat"]{order:2;}
+  :root[data-skin="cupertino"] .mobile-app-tab[data-mobile-panel="settings"]{order:3;}
   :root[data-skin="cupertino"] #settingsMenu.settings-menu-ios{
     padding-bottom:calc(var(--mobile-app-rail-reserve,64px) + 52px);
     scroll-padding-bottom:calc(var(--mobile-app-rail-reserve,64px) + 52px);
