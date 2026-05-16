@@ -781,8 +781,11 @@ const LOCALES = {
     empty_title: 'What can I help with?',
     empty_subtitle: 'Ask anything, run commands, explore files, or manage your scheduled tasks.',
     suggest_files: 'What files are in this workspace?',
+    suggest_files_meta: 'Explore this space',
     suggest_schedule: "What's on my schedule today?",
+    suggest_schedule_meta: 'Today at a glance',
     suggest_plan: 'Help me plan a small project.',
+    suggest_plan_meta: 'Turn an idea into steps',
     // onboarding
     onboarding_badge: 'FIRST RUN',
     onboarding_title: 'Welcome to Hermes Web UI',
